@@ -1,4 +1,5 @@
-# ng-demo-lite
+# Chatroom
+Angular的小型聊天室demo
 
 ## Install dependencies
 ```
