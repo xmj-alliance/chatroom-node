@@ -27,6 +27,14 @@ module.exports = {
           },
           {
             loader: 'angular2-template-loader',
+          },
+          {
+            loader: 'tslint-loader',
+            options: {
+              enforce: 'pre',
+              typeCheck: true,
+              emitErrors: true
+            }
           }
         ]
       },
