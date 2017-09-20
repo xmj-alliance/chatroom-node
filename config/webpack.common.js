@@ -5,9 +5,9 @@ const helpers = require('./helpers');
 
 module.exports = {
   entry: {
-    'polyfills': './src/polyfills.ts',
-    'vendor': './src/vendor.ts',
-    'app': './src/main.ts'
+    'polyfills': './src/client/polyfills.ts',
+    'vendor': './src/client/vendor.ts',
+    'app': './src/client/main.ts'
   },
 
   resolve: {
@@ -48,12 +48,12 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        exclude: helpers.root('src', 'app'),
+        exclude: helpers.root('src', 'client'),
         use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader?sourceMap' })
       },
       {
         test: /\.css$/,
-        include: helpers.root('src', 'app'),
+        include: helpers.root('src', 'client'),
         use: ['raw-loader']
       }
     ]
@@ -65,7 +65,7 @@ module.exports = {
     new webpack.ContextReplacementPlugin(
       // The (\\|\/) piece accounts for path separators in *nix and Windows
       /angular(\\|\/)core(\\|\/)@angular/,
-      helpers.root('./src'), // location of your src
+      helpers.root('./src/client'), // location of your src
       {} // a map of your routes
     ),
 
@@ -74,7 +74,7 @@ module.exports = {
     }),
 
     new HtmlWebpackPlugin({
-      template: 'src/index.html'
+      template: 'src/client/index.html'
     })
 
   ]

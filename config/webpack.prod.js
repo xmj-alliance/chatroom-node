@@ -9,7 +9,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 
-const outputPath = helpers.root('dist');
+const outputPath = path.join(helpers.root('dist'), "./client") ;
 const rootPath = path.resolve(path.join(outputPath, ".."));
 const extractSassMod = new ExtractTextPlugin({
   filename: "[name].[contenthash].css",
