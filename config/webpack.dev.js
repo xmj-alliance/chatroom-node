@@ -5,6 +5,25 @@ const helpers = require('./helpers');
 
 module.exports = webpackMerge(commonConfig, {
   devtool: 'cheap-module-eval-source-map',
+  
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        use: [
+          {
+            loader: "to-string-loader"
+          },
+          {
+            loader: "css-loader" // translates CSS into CommonJS
+          },
+          {
+            loader: "sass-loader" // compiles Sass to CSS
+          }
+        ]
+      }
+    ]
+  },
 
   output: {
     path: helpers.root('dist'),

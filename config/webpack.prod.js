@@ -11,9 +11,34 @@ const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 
 const outputPath = helpers.root('dist');
 const rootPath = path.resolve(path.join(outputPath, ".."));
+const extractSassMod = new ExtractTextPlugin({
+  filename: "[name].[contenthash].css",
+  disable: process.env.NODE_ENV === "development"
+});
 
 module.exports = webpackMerge(commonConfig, {
   devtool: 'source-map',
+
+  module:{
+    rules: [
+      {
+        test: /\.scss$/,
+        use: extractSassMod.extract(
+          {
+            use: [
+              {
+                loader: "css-loader"
+              },
+              {
+                loader: "sass-loader"
+              }
+            ],
+            fallback: "style-loader"
+          }
+        )
+      }
+    ]
+  },
 
   output: {
     path: outputPath,
@@ -40,6 +65,8 @@ module.exports = webpackMerge(commonConfig, {
       htmlLoader: {
         minimize: false // workaround for ng2
       }
-    })
+    }),
+
+    extractSassMod
   ]
 });
