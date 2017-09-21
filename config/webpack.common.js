@@ -26,6 +26,9 @@ module.exports = {
             }
           },
           {
+            loader: 'angular-router-loader',
+          },
+          {
             loader: 'angular2-template-loader',
           },
           {
