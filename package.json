@@ -6,7 +6,8 @@
     "start": "npm run serve",
     "test": "karma start",
     "serve": "webpack-dev-server --hot --inline --progress --port 4199",
-    "build": "webpack --config config/webpack.prod.js --progress --profile --bail"
+    "build": "npm run build:c",
+    "build:c": "webpack --config config/webpack.prod.js --progress --profile --bail"
   },
   "license": "GPL-3.0",
   "dependencies": {
@@ -19,6 +20,7 @@
     "@angular/platform-browser": "^4.4.3",
     "@angular/platform-browser-dynamic": "^4.4.3",
     "@angular/router": "^4.4.3",
+    "bootstrap": "^4.0.0-beta",
     "core-js": "^2.5.1",
     "rxjs": "^5.4.3",
     "zone.js": "^0.8.17"
