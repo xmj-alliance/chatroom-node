@@ -8,7 +8,7 @@
     "serve": "webpack-dev-server --hot --inline --progress --port 4199",
     "build": "webpack --config config/webpack.prod.js --progress --profile --bail"
   },
-  "license": "MIT",
+  "license": "GPL-3.0",
   "dependencies": {
     "@angular/animation": "^4.0.0-beta.8",
     "@angular/common": "^4.4.3",
