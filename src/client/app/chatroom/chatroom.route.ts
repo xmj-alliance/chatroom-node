@@ -6,7 +6,7 @@ import { ChatroomComponent } from './chatroom.component';
 const chatroomRouting = [
   {
     path: 'index',
-    redirectTo: '/',
+    redirectTo: '',
   },
   {
     path: '',
@@ -16,7 +16,7 @@ const chatroomRouting = [
   {
     path: '**',
     redirectTo: '/',
-  },
+  }
 ];
 
 export const chatroomRoutes = RouterModule.forChild(chatroomRouting);

@@ -8,7 +8,7 @@ import { Http404Component } from './http404/http404.component';
 const appRouting: Routes = [
   {
     path: 'index',
-    redirectTo: '/',
+    redirectTo: '',
   },
   {
     path: '',
