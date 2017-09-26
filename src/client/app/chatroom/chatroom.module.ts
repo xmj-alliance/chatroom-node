@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+
 // routes
-import { chatroomRoutes } from './chatroom.route'
+import { chatroomRoutes } from './chatroom.route';
 
 // componets
 import { ChatroomComponent } from './chatroom.component';

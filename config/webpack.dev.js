@@ -8,7 +8,10 @@ const helpers = require('./helpers');
 const clientpath = path.join(__dirname, "../src/client");
 const appPath = path.resolve(clientpath, 'app');
 const globalscss = [
-  path.resolve(clientpath, 'style.scss')
+  path.resolve(clientpath, 'styles.scss')
+];
+const themeScssPath = [
+  path.resolve(clientpath, 'assets/scss/themes')
 ]
 
 
@@ -20,7 +23,7 @@ module.exports = webpackMerge(commonConfig, {
       {
         /* Scoped scss */
         test: /\.scss$/,
-        exclude: globalscss, // exclude global scss
+        exclude: globalscss.concat(themeScssPath), // exclude global and theme scss
         use: [
           {
             loader: "to-string-loader" // Angular needs to-string instead of style-loader
