@@ -1,19 +1,47 @@
-<header>
-  <div>
-    brand
-    chatroom-node
-  </div>
-  <nav>
-    nav bar
-  </nav>
+<header class="container-fluid chatroom">
+  <md-toolbar class="col" color="primary">
+    <div>
+    brand <b>chatroom-node</b></div>
+
+    <nav>
+      nav bar
+    </nav>
+
+  </md-toolbar>
+
 </header>
 
-<aside>
-  list of chats
-</aside>
+<div class="chatHolder container-fluid">
+  <aside class="col-md-3">
+    <md-card>
+      <md-card-header>
+        list of chats
+      </md-card-header>
+      <md-card-content>
+        <ul>
+          <li>甲</li>
+          <li>乙</li>
+          <li>丙</li>
+        </ul>
+      </md-card-content>
+    </md-card>
+    
+  </aside>
+      
+  <main class="col-md-8">
+    <md-card>
+      <md-card-header>
+        list of chats
+      </md-card-header>
+      <md-card-content>
+          chat 1 2 3 4 5
+      </md-card-content>
+      <md-card-actions>
+          input bar
+      </md-card-actions>
+    </md-card>
+  </main>
+</div>
 
-<main>
-  chat 1 2 3 4 5
-  input bar
-</main>
+
 
