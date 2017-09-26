@@ -1,5 +1,6 @@
-# Chatroom
+# chatroom-node
 Angular的小型聊天室demo
+A simple chatroom with node, koa, angular, socket.io, etc.
 
 基本没有功能
 
@@ -29,3 +30,4 @@ npm run build
 
 ## 技术栈
 Angular Webpack Typescript(tslint, codelyzer) scss twitter-bootstrap
+
