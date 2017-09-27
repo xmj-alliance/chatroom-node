@@ -20,6 +20,10 @@ const appRouting: Routes = [
     loadChildren: './chatroom/chatroom.module#ChatroomModule'
   },
   {
+    path: 'user',
+    loadChildren: './user/user.module#UserModule'
+  },
+  {
     path: '**',
     component: Http404Component
   }
