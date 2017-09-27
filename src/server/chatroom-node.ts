@@ -9,20 +9,21 @@ import * as Router from 'koa-router';
 // import * as cors from 'cors';
 
 // routes
-//import { api } from './router/api';
+import { api } from './router/api';
 
 let app = new Koa();
 let router = new Router();
 
 // root route and sub route settings
-router.get("/", function* (ctx, next): any {
-  ctx.body = "Hello world!";
-  yield "xxx";
+router.get('/', async (ctx, next) => {
+  ctx.body="root"
 });
-//router.get("/api", api.routes());
+router.get('/api', api.routes());
 
-app.use(router.routes());
-
-app.listen(3000);
+app.use(router.routes())
+      .use(router.allowedMethods());
+app.listen(3000, () => {
+  console.log("koa started at 3000");
+});
 
 export default app;
