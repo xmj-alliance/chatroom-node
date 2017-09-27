@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -19,6 +20,8 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.js']
   },
+
+  externals: fs.readdirSync("node_modules"),
 
   module: {
     rules: [
