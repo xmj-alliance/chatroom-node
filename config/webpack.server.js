@@ -19,7 +19,7 @@ fs.readdirSync('node_modules')
 
 module.exports = {
   entry: {
-    'server': './src/server/chatroom-node.ts'
+    'chatroom-node': './src/server/chatroom-node.ts'
   },
 
   resolve: {
@@ -29,6 +29,8 @@ module.exports = {
   target: 'node',
 
   externals: nodeModules,
+
+  devtool: 'source-map',
 
   module: {
     rules: [
