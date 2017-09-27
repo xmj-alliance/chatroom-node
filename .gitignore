@@ -61,3 +61,4 @@ typings/
 # site specific
 .vscode
 /dist
+src/client/static

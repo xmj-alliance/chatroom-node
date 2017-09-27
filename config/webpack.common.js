@@ -1,7 +1,12 @@
+const path = require('path');
+
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const helpers = require('./helpers');
+
+const clientpath = path.join(__dirname, "../src/client");
 
 module.exports = {
   entry: {
@@ -48,6 +53,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
+        exclude: /static/,
         use: 'file-loader?name=assets/[name].[hash].[ext]'
       },
       {
@@ -79,7 +85,14 @@ module.exports = {
 
     new HtmlWebpackPlugin({
       template: 'src/client/index.html'
-    })
+    }),
+
+    new CopyWebpackPlugin([
+      { 
+        from: path.resolve(clientpath, "./static"),
+        to: 'static' 
+       },
+    ])
 
   ]
 };
