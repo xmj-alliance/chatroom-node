@@ -19,6 +19,8 @@ const extractSassMod = new ExtractTextPlugin({
 module.exports = webpackMerge(commonConfig, {
   devtool: 'source-map',
 
+  externals: fs.readdirSync("node_modules"),
+
   module:{
     rules: [
       {

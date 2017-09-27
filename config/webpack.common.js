@@ -21,8 +21,6 @@ module.exports = {
     extensions: ['.ts', '.js']
   },
 
-  externals: fs.readdirSync("node_modules"),
-
   module: {
     rules: [
       {
