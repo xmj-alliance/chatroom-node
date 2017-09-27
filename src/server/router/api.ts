@@ -3,7 +3,7 @@ import * as Router from 'koa-router';
 const router = new Router();
 
 /* GET api listing. */
-router.get('/api', async (ctx, next) => {
+router.get('/', async (ctx, next) => {
   ctx.body="api works finally!"
 });
 

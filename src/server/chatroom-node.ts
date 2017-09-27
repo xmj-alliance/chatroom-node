@@ -18,7 +18,7 @@ let router = new Router();
 router.get('/', async (ctx, next) => {
   ctx.body="root"
 });
-router.get('/api', api.routes());
+router.use('/api', api.routes(), api.allowedMethods())
 
 app.use(router.routes())
       .use(router.allowedMethods());
