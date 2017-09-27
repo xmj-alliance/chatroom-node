@@ -1,0 +1,59 @@
+div.bg {
+  background: #f0f0f0;
+  width: 100%;
+  min-height: 100vh;
+}
+
+section.loginForm {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  top: 27vh;
+  form {
+    margin: 0px auto;
+    text-align: center;
+  }
+  md-card {
+    max-width: 600px;
+    margin: 0px auto;
+  }
+  md-form-field {
+    width: 80%;
+  }
+  md-card-actions {
+    text-align: right;
+  }
+}
+
+@mixin gtemd() {
+
+}
+
+/* Responsive Settings Start. Bootstrap v4 */
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media only screen and (max-width: 576px) {	
+  
+}
+  
+  /* Small devices (landscape phones, 576px and up) */
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+  
+ }
+  
+  /* Medium devices (tablets, 768px and up) */
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+  @include gtemd();
+}
+  
+  /* Large devices (desktops, 992px and up) */
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  @include gtemd();
+}
+  
+  /* Extra large devices (large desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  @include gtemd();
+}
+  
+  /* Responsive Settings End*/

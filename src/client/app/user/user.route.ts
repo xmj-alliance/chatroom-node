@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 // components
 import { IndexComponent } from './index/index.component';
 import { Http404Component } from './http404/http404.component';
+import { LoginComponent } from './login/login.component';
 
 const userRouting = [
   {
@@ -13,6 +14,10 @@ const userRouting = [
     path: '',
     pathMatch: 'full',
     component: IndexComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
   },
   {
     path: '**',
