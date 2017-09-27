@@ -6,10 +6,53 @@ div.chatHolder {
   display: flex;
   flex-wrap: wrap;
   padding: 0px;
+  max-width: 1200px;
   aside {
     padding: 0px;
   }
   main {
     padding: 0px;
+    md-card.input {
+      margin: 1em 0em;
+    }
   }
 }
+
+/* Responsive Settings Start. Bootstrap v4 */
+
+/* Extra small devices (portrait phones, less than 576px) */
+// @media only screen and (max-width: 576px) {	
+  
+//   }
+  
+  /* Small devices (landscape phones, 576px and up) */
+  // @media only screen and (min-width: 576px) and (max-width: 768px) {
+  
+  // }
+  
+  /* Medium devices (tablets, 768px and up) */
+  // @media only screen and (min-width: 768px) and (max-width: 992px) {
+  
+  // }
+  
+  /* Large devices (desktops, 992px and up) */
+  // @media only screen and (min-width: 992px) and (max-width: 1200px) {
+  
+  // }
+  
+  /* Extra large devices (large desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+    div.chatHolder {
+
+      aside {
+        margin: 1em;
+      }
+      main {
+        margin: 1em;
+        position: relative;
+        right: -2em;        
+      }
+    }
+  }
+  
+  /* Responsive Settings End*/
