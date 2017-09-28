@@ -1,17 +1,26 @@
 @import './theme-core';
 
-$candy-app-primary: mat-palette($mat-indigo);
-$candy-app-accent:  mat-palette($mat-pink, A200, A100, A400);
+$default-primary: mat-palette($mat-indigo);
+$default-accent:  mat-palette($mat-pink, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
-$candy-app-warn:    mat-palette($mat-red);
+$default-warn:    mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);
+$default-theme: mat-light-theme($default-primary, $default-accent, $default-warn);
+
+// mat hack
+$localPrimary: map-get(map-get($default-theme, primary), 500); 
+$localAccent: map-get(map-get($default-theme, accent), 500); 
+$localWarn: map-get(map-get($default-theme, warn), 500); 
 
 // md button uppercase patch
 button[md-raised-button] {
   text-transform: uppercase;
 }
 
-@include angular-material-theme($candy-app-theme);
+md-hint.warn {
+  color: $localWarn;
+}
+
+@include angular-material-theme($default-theme);
