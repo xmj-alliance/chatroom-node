@@ -1,27 +1,28 @@
 <div class="bg"></div>
 
 <section class="signupForm">
-  <form class="col-md-4 col-sm-12">
+  <form [formGroup]="form" class="col-md-4 col-sm-12">
     <md-card>
       <md-card-content>
 
         <md-form-field>
-          <input #email="ngModel" mdInput placeholder="Email" [(ngModel)]="newUser.email" maxlength="30" name="email" [required]="true" pattern="^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$">
-          <md-hint class="warn" *ngIf="email.errors && (email.dirty || email.touched)" align="end" color="warn">Your email is invalid</md-hint>
+          <input  formControlName="email" mdInput placeholder="Email" [(ngModel)]="newUser.email" maxlength="30" name="email" [required]="true">
+          <md-hint class="warn" *ngIf="form.controls.email.invalid && (form.controls.email.dirty || form.controls.email.touched)" align="end">Your email is invalid</md-hint>
         </md-form-field>
 
         <md-form-field>
-            <input #pswd="ngModel" mdInput type="password" placeholder="Password" [(ngModel)]="newUser.password" maxlength="30" name="password" [required]="true" validateEqual="pswdRepeat" reverse="true">
+            <input formControlName="password" mdInput type="password" placeholder="Password" [(ngModel)]="newUser.password" maxlength="30" name="password" [required]="true">
+            <md-hint class="warn" *ngIf="form.controls.password.hasError('minlength') && (form.controls.password.dirty || form.controls.password.touched)" align="end">Your password is too short</md-hint>
         </md-form-field>
 
         <md-form-field>
-          <input #pswdRepeat="ngModel"  mdInput type="password" placeholder="Confirm Password" name="passwordConfirm" [(ngModel)]="newUser.passwordConfirm" maxlength="30" [required]="true" validateEqual="pswd">
-          <md-hint class="warn" *ngIf="pswdRepeat.invalid && (pswdRepeat.dirty || pswdRepeat.touched)" align="end" color="warn">Your pswd is mis-matched</md-hint>
+          <input formControlName="repeatPassword"  mdInput type="password" placeholder="Confirm Password" [(ngModel)]="repeatPassword" name="repeatPassword" maxlength="30" [required]="true">
+          <md-hint class="warn" *ngIf="form.controls.repeatPassword.hasError('matchOther') && (form.controls.repeatPassword.dirty || form.controls.repeatPassword.touched)" align="end">Your passwords are mismatched</md-hint>
         </md-form-field>
 
       </md-card-content>
       <md-card-actions>
-          <button md-raised-button color="primary">Sign up</button>
+          <button md-raised-button color="primary" (click)="signup()">Sign up</button>
       </md-card-actions>
     </md-card>
   </form>

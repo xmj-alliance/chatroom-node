@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
 // md modules
 import { MatInputModule } from '@angular/material';
@@ -30,6 +30,7 @@ const mdModules = [
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
 
     mdModules,
 
