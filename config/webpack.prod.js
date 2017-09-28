@@ -20,13 +20,11 @@ const extractSassMod = new ExtractTextPlugin({
 module.exports = webpackMerge(commonConfig, {
   devtool: 'source-map',
 
-  externals: fs.readdirSync("node_modules"),
-
   module:{
     rules: [
       {
         test: /\.scss$/,
-        use: extractSassMod.extract(
+        use: ['to-string-loader'].concat(extractSassMod.extract(
           {
             use: [
               {
@@ -38,7 +36,7 @@ module.exports = webpackMerge(commonConfig, {
             ],
             fallback: "style-loader"
           }
-        )
+        )) // to-string-loader is a workaround. issue: https://github.com/webpack-contrib/extract-text-webpack-plugin/issues/397
       }
     ]
   },
