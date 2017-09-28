@@ -32,6 +32,7 @@
     "koa": "^2.3.0",
     "koa-logger": "^3.1.0",
     "koa-router": "^7.2.1",
+    "koa-send": "^4.1.1",
     "rxjs": "^5.4.3",
     "zone.js": "^0.8.17"
   },
@@ -40,6 +41,7 @@
     "@types/koa": "^2.0.39",
     "@types/koa-logger": "^2.0.2",
     "@types/koa-router": "^7.0.23",
+    "@types/koa-send": "^3.3.0",
     "@types/node": "^8.0.28",
     "angular-router-loader": "^0.6.0",
     "angular2-template-loader": "^0.6.2",

@@ -28,6 +28,11 @@ module.exports = {
 
   target: 'node',
 
+  node: {
+    __dirname: false,
+    __filename: false
+  },
+
   externals: nodeModules,
 
   devtool: 'source-map',
