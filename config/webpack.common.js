@@ -91,7 +91,8 @@ module.exports = {
     new CopyWebpackPlugin([
       { 
         from: path.resolve(clientpath, "./static"),
-        to: 'static' 
+        to: 'static',
+        ignore: [".gitkeep"]
        },
     ])
 

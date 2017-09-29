@@ -61,5 +61,7 @@ typings/
 # site specific
 .vscode
 /dist
-src/client/static
-src/server/config
+src/client/static/*
+!src/client/static/.gitkeep
+src/server/config/*
+!src/server/config/chatroom-node-default.json
