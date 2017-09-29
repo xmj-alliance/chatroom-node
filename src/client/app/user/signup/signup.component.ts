@@ -9,15 +9,6 @@ import { matchOtherValidator } from "../../_utils/match-other-validator";
 	styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
-	constructor(
-		@Inject(FormBuilder) fb: FormBuilder
-	) {
-		this.constructForm(fb);
-	}
-	
-	ngOnInit() {
-		
-	}
 
 	repeatPassword: string = null;
 	form: FormGroup;
@@ -27,7 +18,15 @@ export class SignupComponent implements OnInit {
 		password: null
 	}
 
-
+	constructor(
+		@Inject(FormBuilder) fb: FormBuilder
+	) {
+		this.constructForm(fb);
+	}
+	
+	ngOnInit() {
+		
+	}
 
 	constructForm (fb: FormBuilder) {
 		this.form = fb.group({

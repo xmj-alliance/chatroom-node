@@ -1,21 +1,23 @@
 <div class="bg"></div>
 
 <section class="loginForm">
-  <form class="col-md-4">
+  <form [formGroup]="form" class="col-md-4">
     <md-card>
       <md-card-content>
 
         <md-form-field>
-          <input mdInput placeholder="Username" value="">
+          <input  formControlName="username" mdInput placeholder="Name" [(ngModel)]="user.name" maxlength="30" name="name" [required]="true">
+          <md-hint class="warn" *ngIf="form.controls.username.invalid && (form.controls.username.dirty || form.controls.username.touched)" align="end">Your provided name is invalid</md-hint>
         </md-form-field>
 
         <md-form-field>
-            <input mdInput type="password" placeholder="Password" value="">
-        </md-form-field>
+          <input formControlName="password" mdInput type="password" placeholder="Password" [(ngModel)]="user.password" maxlength="30" name="password" [required]="true">
+          <md-hint class="warn" *ngIf="form.controls.password.hasError('minlength') && (form.controls.password.dirty || form.controls.password.touched)" align="end">Your password is too short</md-hint>
+      </md-form-field>
 
       </md-card-content>
       <md-card-actions>
-          <button md-raised-button color="primary">Log in</button>
+          <button md-raised-button color="primary" (click)="login()">Log in</button>
       </md-card-actions>
     </md-card>
   </form>

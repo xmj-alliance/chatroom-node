@@ -11,12 +11,18 @@ export const auth = async (ctx: Router.IRouterContext) => {
   if (user && user.password === 'password') {
     ctx.status = 200;
     ctx.body = {
-      token: jwt.sign({ role: 'admin' }, secret, {expiresIn: '1h'}), 
+      token: jwt.sign(
+        { 
+          role: 'admin',
+          username: user.name
+         }
+        , secret, {expiresIn: '1h'}), 
       message: "Successfully logged in!"
     };
   } else {
     ctx.status = 401;
     ctx.body = {
+      token: null,
       message: "Authentication failed"
     };
   }
