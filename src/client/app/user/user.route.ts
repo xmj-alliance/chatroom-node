@@ -1,5 +1,9 @@
 import { RouterModule, Routes } from '@angular/router';
 
+// services
+//import { AuthGuardService } from '../_services/auth-guard.service';
+import { AntiAuthGuardService } from '../_services/anti-auth-guard.service';
+
 // components
 import { IndexComponent } from './index/index.component';
 import { Http404Component } from './http404/http404.component';
@@ -18,10 +22,12 @@ const userRouting = [
   },
   {
     path: 'login',
-    component: LoginComponent,
+    canActivate: [AntiAuthGuardService],
+    component: LoginComponent
   },
   {
     path: 'signup',
+    canActivate: [AntiAuthGuardService],
     component: SignupComponent,
   },
   {
