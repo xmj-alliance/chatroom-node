@@ -2,6 +2,7 @@ const path = require('path');
 const fs = require('fs');
 
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const helpers = require('./helpers');
 const serverpath = path.resolve(helpers.root('src'), "./server");
@@ -51,14 +52,20 @@ module.exports = {
           }
 
         ],
-        exclude: /node_modules/
+        exclude:  /node_modules/
       }
 
     ]
   },
 
   plugins: [
-    new CleanWebpackPlugin([outputPath], {root: outputRootPath, verbose: false})
+    new CleanWebpackPlugin([outputPath], {root: outputRootPath, verbose: false}),
+    new CopyWebpackPlugin([
+      { 
+        from: path.resolve(serverpath, "./config"),
+        to: 'config' 
+       },
+    ])
   ],
 
   output: {
