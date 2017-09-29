@@ -10,6 +10,8 @@ import { appRoutes } from "./app.route";
 // services
 import { DataService } from './_services/data.service';
 import { AuthService } from './_services/auth.service';
+import { AuthGuardService } from './_services/auth-guard.service';
+import { AntiAuthGuardService } from './_services/anti-auth-guard.service';
 
 import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
@@ -35,7 +37,9 @@ const angularModules = [
   ],
   providers: [
     DataService,
-    AuthService
+    AuthService,
+    AuthGuardService,
+    AntiAuthGuardService
   ],
   bootstrap: [ AppComponent ]
 })

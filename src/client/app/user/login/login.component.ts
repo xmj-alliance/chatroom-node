@@ -1,4 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 // services
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
 
 	constructor(
 		@Inject(FormBuilder) fb: FormBuilder,
-		private authService: AuthService
+		private authService: AuthService,
+		private router: Router
 	) {
 		this.constructForm(fb);
 	}
@@ -53,6 +55,7 @@ export class LoginComponent implements OnInit {
 				case "SUCCESS":
 					//ok;
 					console.log("Login success");
+					this.router.navigate(["/"]);
 					break;
 				case "INCORRECT_CREDENTIALS":
 					//Failed
