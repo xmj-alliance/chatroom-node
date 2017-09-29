@@ -47,7 +47,7 @@ export class DataService {
   }
 
   postJsonData(url: string, data: any, extHeaders?: any[]) {
-    let headers = new Headers({'Content-Type': 'application/json'});
+    let headers = new Headers({"Content-Type": "application/json"});
     if (extHeaders) {
       for (let header of extHeaders) {
         header.append(header.key, header.value);

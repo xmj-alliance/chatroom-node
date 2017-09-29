@@ -16,14 +16,21 @@ export const auth = async (ctx: Router.IRouterContext) => {
           role: 'admin',
           username: user.name
          }
-        , secret, {expiresIn: '1h'}), 
-      message: "Successfully logged in!"
+        , secret, {expiresIn: '1h'}
+      ), 
+      status: "SUCCESS"
     };
-  } else {
-    ctx.status = 401;
+  } else if(user.password !== 'password') {
+    ctx.status = 200;
     ctx.body = {
       token: null,
-      message: "Authentication failed"
+      status: "INCORRECT_CREDENTIALS"
+    };
+  } else {
+    ctx.status = 500;
+    ctx.body = {
+      token: null,
+      status: "SERVER_ERROR"
     };
   }
   return ctx;

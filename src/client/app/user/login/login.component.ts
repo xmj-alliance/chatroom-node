@@ -40,23 +40,26 @@ export class LoginComponent implements OnInit {
 
 	login: () => any = async () => {
 		if (!this.form.invalid) {
+			let status: any;
+
 			try {
-				let status = await this.authService.login(this.user);
-			} catch(e) {
-				console.log("Server anomoly detected");
+				status = await this.authService.login(this.user);
+			} catch (error) {
+				console.log("Server is temporarily down");
 			}
 			
+
 			switch (status) {
-				case "Okay":
+				case "SUCCESS":
 					//ok;
 					console.log("Login success");
 					break;
-				case "Failed":
+				case "INCORRECT_CREDENTIALS":
 					//Failed
-					console.log("Login Failed");
+					console.log("Incorrect username or password");
 					break;
 				default:
-					console.log("Login anomoly detected");
+					//console.log("Login anomoly detected");
 					break;
 			}
 		} else {

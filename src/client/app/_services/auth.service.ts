@@ -19,24 +19,26 @@ export class AuthService {
 
   login: (form: any) => Promise<any> = (form: any) => {
     return new Promise((resolve, reject) => {
-      this.dataService.postJsonData(this.loginUrl, form)
-      .subscribe(
-        (res)=> {
-          if (res.token) {
-            // set token property
-            this.token = res.token;
-            // store username and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('currentUser', JSON.stringify({ username: res.username, token: res.token }));
-            resolve("Okay");
-          } else {
-            // login failed because no token recieved from server
-            resolve("Failed");
+
+        this.dataService.postJsonData(this.loginUrl, form)
+        .subscribe(
+          (res)=> {
+            if (res.token) {
+              // set token property
+              this.token = res.token;
+              // store username and jwt token in local storage to keep user logged in between page refreshes
+              localStorage.setItem('currentUser', JSON.stringify({ username: res.username, token: res.token }));
+            }
+            // login failed because of incorrect username or password || or server internal error
+            resolve(res.status); // right or wrong shares
+
+          },
+          (err) => {
+            reject(err);
           }
-        },
-        (err) => {
-          reject(err);
-        }
-      );
+        );
+
+
     });
 
   };

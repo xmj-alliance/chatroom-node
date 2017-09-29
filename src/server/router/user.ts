@@ -16,7 +16,7 @@ const router = new Router();
 
 router
 .post('/login', async (ctx, next) => {
-    auth(ctx);
+    await auth(ctx);
 })
 .get('/info', cJWT, async (ctx) => {
     const token = ctx.header.authorization  // 获取jwt
