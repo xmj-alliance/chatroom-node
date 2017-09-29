@@ -1,7 +1,7 @@
 import * as Router from 'koa-router';
 import * as jwt from 'jsonwebtoken';
 
-import { chatroomNodeConfig } from '../util/configLoader';
+import { chatroomNodeConfig } from './configLoader';
 
 const secret = chatroomNodeConfig.secret;
 
@@ -17,7 +17,7 @@ export const auth = async (ctx: Router.IRouterContext) => {
   } else {
     ctx.status = 401;
     ctx.body = {
-      message: "Authentication failed 888"
+      message: "Authentication failed"
     };
   }
   return ctx;

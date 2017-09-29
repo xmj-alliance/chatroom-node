@@ -4,7 +4,7 @@ import * as jwt from 'jsonwebtoken';
 
 import * as util from 'util';
 
-import { auth } from '../middleware/auth';
+import { auth } from '../util/auth';
 import { cJWT } from '../middleware/cJWT';
 
 import { chatroomNodeConfig } from '../util/configLoader';
@@ -20,16 +20,15 @@ router
 })
 .get('/info', cJWT, async (ctx) => {
     const token = ctx.header.authorization  // 获取jwt
-    let payload;
     if (token) {
-        payload = await verify(token.split(' ')[1], secret)  // // 解密，获取payload
+        let payload = await verify(token.split(' ')[1], secret)  // 解密，获取payload
         ctx.body = {
             payload
         }
     } else {
+        ctx.status = 401;
         ctx.body = {
-            message: 'token 错误',
-            code: -1
+            message: 'token error'
         }
     }
 })
