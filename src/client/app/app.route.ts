@@ -7,7 +7,6 @@ import { AuthGuardService } from './_services/auth-guard.service';
 import { IndexComponent } from './index/index.component';
 import { Http404Component } from './http404/http404.component';
 
-
 const appRouting: Routes = [
   {
     path: 'index',
@@ -20,8 +19,8 @@ const appRouting: Routes = [
   },
   {
     path: 'chat',
-    canActivate: [AuthGuardService],
-    loadChildren: './chatroom/chatroom.module#ChatroomModule'
+    loadChildren: './chatroom/chatroom.module#ChatroomModule',
+    canLoad: [AuthGuardService]
   },
   {
     path: 'user',
