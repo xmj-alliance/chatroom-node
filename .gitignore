@@ -65,3 +65,4 @@ src/client/static/*
 !src/client/static/.gitkeep
 src/server/config/*
 !src/server/config/chatroom-node-default.json
+/dll/*
