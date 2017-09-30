@@ -1,9 +1,29 @@
-// Bootstrap 4 grid system
+// a md theme
+@import './assets/scss/themes/theme-default';
 
+// Bootstrap 4 grid system
 @import './assets/scss/bsVariables';
 @import '~bootstrap/scss/mixins';
 @import '~bootstrap/scss/grid';
 
+// Bootstrap 4 components
+@import '~bootstrap/scss/list-group';
+
 body {
   margin: 0px;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+img.fluid {
+  max-width: 100%;
+  display: block;
+  margin: 0px auto;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0px;
 }

@@ -14,9 +14,60 @@ $localPrimary: map-get(map-get($default-theme, primary), 500);
 $localAccent: map-get(map-get($default-theme, accent), 500); 
 $localWarn: map-get(map-get($default-theme, warn), 500); 
 
+$gray-100: map-get($mat-grey, 100); 
+$gray-200: map-get($mat-grey, 200); 
+$gray-600: map-get($mat-grey, 600); 
+$gray-700: map-get($mat-grey, 700); 
+$gray-800: map-get($mat-grey, 800); 
+$gray-900: map-get($mat-grey, 900); 
+$green: map-get($mat-green, 500);
+$cyan: map-get($mat-cyan, 500);
+$white: $white-87-opacity; 
+$black: $black-12-opacity;
+
+// Bootstrap 4 theme color related
+$body-bg:       #fafafa !default;
+$body-color:    $gray-900 !default;
+
+$theme-color-interval: 8% !default;
+
+$theme-colors: (
+  primary: $localPrimary,
+  secondary: $localAccent,
+  success: $green,
+  info: $cyan,
+  warning: $localWarn,
+  danger: $localWarn,
+  light: $gray-100,
+  dark: $gray-800
+) !default;
+
+$component-active-color: $white !default;
+$component-active-bg:    $localPrimary !default;
+
+$list-group-bg:                  $white !default;
+$list-group-border-color:        rgba($black,.125) !default;
+$list-group-hover-bg:                 $gray-100 !default;
+$list-group-active-color:             $component-active-color !default;
+$list-group-active-bg:                $component-active-bg !default;
+$list-group-active-border-color:      $list-group-active-bg !default;
+
+$list-group-disabled-color:      $gray-600 !default;
+$list-group-disabled-bg:         $list-group-bg !default;
+
+$list-group-action-color:             $gray-700 !default;
+$list-group-action-hover-color:       $list-group-action-color !default;
+
+$list-group-action-active-color:      $body-color !default;
+$list-group-action-active-bg:         $gray-200 !default;
+
 // md button uppercase patch
 button[md-raised-button] {
   text-transform: uppercase;
+}
+
+body {
+  background-color: $body-bg;
 }
 
 md-hint.warn {

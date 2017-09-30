@@ -19,8 +19,8 @@ const appRouting: Routes = [
   },
   {
     path: 'chat',
-    loadChildren: './chatroom/chatroom.module#ChatroomModule',
-    canLoad: [AuthGuardService]
+    loadChildren: './chatroom/chatroom.module#ChatroomModule'
+    //canLoad: [AuthGuardService]
   },
   {
     path: 'user',
