@@ -13,14 +13,14 @@ section.signupForm {
     margin: 0px auto;
     text-align: center;
   }
-  md-card {
+  mat-card {
     max-width: 600px;
     margin: 0px auto;
   }
-  md-form-field {
+  mat-form-field {
     width: 80%;
   }
-  md-card-actions {
+  mat-card-actions {
     text-align: right;
   }
 }
@@ -34,7 +34,7 @@ section.signupForm {
     padding: 0px;
   }
 
-  md-card {
+  mat-card {
     padding-top: 32vh;
     padding-bottom: 38vh;
   }

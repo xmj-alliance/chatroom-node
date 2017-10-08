@@ -9,16 +9,16 @@ div.chatHolder {
   max-width: 1200px;
   aside {
     padding: 0px;
-    md-card {
+    mat-card {
       height: 78vh;
     }
   }
   main {
     padding: 0px;
-    md-card.chat {
+    mat-card.chat {
       height: 66vh;
     }
-    md-card.input {
+    mat-card.input {
       margin: 1em 0em;
     }
   }

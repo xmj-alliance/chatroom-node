@@ -62,7 +62,7 @@ $list-group-action-active-color:      $body-color !default;
 $list-group-action-active-bg:         $gray-200 !default;
 
 // md button uppercase patch
-button[md-raised-button] {
+button[mat-raised-button] {
   text-transform: uppercase;
 }
 
@@ -70,7 +70,7 @@ body {
   background-color: $body-bg;
 }
 
-md-hint.warn {
+mat-hint.warn {
   color: $localWarn;
 }
 
