@@ -10,8 +10,57 @@ div.chatHolder {
   aside {
     padding: 0px;
     mat-card {
-      height: 78vh;
+      height: 83vh;
+      padding: 0px;
+      overflow-y: scroll;
     }
+    // mat-card::-webkit-scrollbar-track {
+    //   box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    //   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    //   background-color: #F5F5F5;
+    // }
+    mat-card::-webkit-scrollbar {
+      display: none;
+    }
+    // mat-card::-webkit-scrollbar-thumb {
+    //   background-color: #0ae;
+      
+    //   background-image: gradient(linear, 0 0, 0 100%,
+    //                      color-stop(.5, rgba(255, 255, 255, .2)),
+    //              color-stop(.5, transparent), to(transparent));
+    // }
+    mat-card-content {
+      a {
+        width: initial;
+        border: initial;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+        text-decoration: none;
+        height: 4.5em;
+        display: flex;
+      }
+    }
+
+    header.avatar {
+      margin: 0px;
+      width: 4em;
+      height: 4em;
+      background-color: #eeeeee;
+    }
+
+    main.info {
+      margin: 0px;
+      overflow: hidden;
+      p {
+        margin-top: 0px;
+        margin-bottom: 0.5em;
+        span.time {
+          position: absolute;
+          right: 1rem;
+        }
+      }
+    }
+
+
   }
   main {
     padding: 0px;
@@ -48,10 +97,19 @@ div.chatHolder {
   
   /* Extra large devices (large desktops, 1200px and up) */
   @media only screen and (min-width: 1200px) {
+    header.chatroom {
+      nav {
+        margin-left: 3em;
+      }
+    }
+
     div.chatHolder {
 
       aside {
         margin: 1em;
+        main.info {
+          width: 190px;
+        }
       }
       main {
         margin: 1em;
