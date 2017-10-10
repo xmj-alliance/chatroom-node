@@ -1,0 +1,54 @@
+main {
+  padding: 0px;
+
+}
+
+mat-card.chat {
+  height: 66vh;
+  mat-card-header {
+    span.name {
+      font-size: 1.5em;
+    }
+    span.action {
+      position: absolute;
+      right: 3em;
+    }
+  }
+  mat-card-content {
+    margin-top: 1em;
+
+    div.dialog {
+      display: flex;
+      margin: 1em;
+      div.avatarHolder {
+        width: 64px;
+        height: 64px;
+        background-color: #eeeeee;
+      }
+      div.messageHolder {
+        margin-left: 1em;
+        width: 60%;
+        p.name {
+          margin: 0.75em;
+          font-weight: bold;
+        }
+        div.message {
+          background-color: #eeeeee;
+          padding: 1em;
+          min-height: 1.5em;
+          font-size: 1em;
+        }
+      }
+    }
+
+    div.recieved {
+
+
+    }
+
+  }
+}
+
+mat-card.input {
+  margin: 1em 0em;
+}
