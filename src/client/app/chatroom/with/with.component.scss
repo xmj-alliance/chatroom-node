@@ -18,7 +18,6 @@ mat-card.chat {
     margin-top: 1em;
 
     div.dialog {
-      display: flex;
       margin: 1em;
       div.avatarHolder {
         width: 64px;
@@ -27,7 +26,7 @@ mat-card.chat {
       }
       div.messageHolder {
         margin-left: 1em;
-        width: 60%;
+        max-width: 60%;
         p.name {
           margin: 0.75em;
           font-weight: bold;
@@ -37,13 +36,28 @@ mat-card.chat {
           padding: 1em;
           min-height: 1.5em;
           font-size: 1em;
+          word-wrap: break-word;
         }
       }
     }
 
-    div.recieved {
+    div.dialogHolder {
+      display: inline-flex;
+    }
 
-
+    div.sent {
+      text-align: right;
+      div.avatarHolder {
+        position: relative;
+        left: 6em;
+      }
+      div.messageHolder {
+        position: relative;
+        right: 6em;
+        p.name {
+          text-align: right;
+        }
+      }
     }
 
   }
