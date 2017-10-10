@@ -13,7 +13,6 @@ const chatroomRouting: any[] = [
   },
   {
     path: '',
-    pathMatch: 'full',
     component: ChatroomComponent,
     children: [
       {
@@ -30,11 +29,11 @@ const chatroomRouting: any[] = [
         component: Http404Component
       }
     ]
-  },
-  {
-    path: '**',
-    redirectTo: '/',
   }
+  // {
+  //   path: '**',
+  //   redirectTo: '/',
+  // }
 ];
 
 export const chatroomRoutes = RouterModule.forChild(chatroomRouting);
