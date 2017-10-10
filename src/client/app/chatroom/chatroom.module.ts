@@ -10,6 +10,9 @@ import { chatroomRoutes } from './chatroom.route';
 
 // componets
 import { ChatroomComponent } from './chatroom.component';
+import { IndexComponent } from './index/index.component';
+import { Http404Component } from './http404/http404.component';
+import { WithComponent } from './with/with.component';
 
 const mdModules = [
   MatToolbarModule,
@@ -24,7 +27,10 @@ const mdModules = [
     chatroomRoutes
   ],
   declarations: [
-    ChatroomComponent
+    ChatroomComponent,
+    IndexComponent,
+    Http404Component,
+    WithComponent
   ]
 })
 export class ChatroomModule { }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-	selector: 'chat-404',
+	selector: 'app-404',
 	templateUrl: './http404.component.html',
 	styleUrls: ['./http404.component.scss']
 })

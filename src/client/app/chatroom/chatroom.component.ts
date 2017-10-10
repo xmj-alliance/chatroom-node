@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-	selector: 'chat-room',
+	selector: 'chatroom-root',
 	templateUrl: './chatroom.component.html',
 	styleUrls: ['./chatroom.component.scss']
 })
