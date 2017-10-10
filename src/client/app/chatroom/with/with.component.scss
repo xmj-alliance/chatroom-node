@@ -3,8 +3,15 @@ main {
 
 }
 
+ol {
+  list-style-type: none;
+  padding: 0px;
+}
+
 mat-card.chat {
   height: 66vh;
+  overflow-y: scroll;
+
   mat-card-header {
     span.name {
       font-size: 1.5em;
@@ -17,16 +24,21 @@ mat-card.chat {
   mat-card-content {
     margin-top: 1em;
 
-    div.dialog {
+    li.dialog {
       margin: 1em;
+      display: flex;
       div.avatarHolder {
         width: 64px;
         height: 64px;
         background-color: #eeeeee;
+        position: relative;
       }
       div.messageHolder {
         margin-left: 1em;
+        margin-right: 1em;
         max-width: 60%;
+        order: 1;
+
         p.name {
           margin: 0.75em;
           font-weight: bold;
@@ -41,26 +53,23 @@ mat-card.chat {
       }
     }
 
-    div.dialogHolder {
-      display: inline-flex;
-    }
-
-    div.sent {
-      text-align: right;
+    li.sent {
+      justify-content: flex-end;
+      // align-items: flex-end;
       div.avatarHolder {
-        position: relative;
-        left: 6em;
+        order: 2;
       }
       div.messageHolder {
-        position: relative;
-        right: 6em;
         p.name {
           text-align: right;
         }
       }
     }
-
   }
+}
+
+mat-card.chat::-webkit-scrollbar {
+  display: none;
 }
 
 mat-card.input {
