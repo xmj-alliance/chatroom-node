@@ -57,27 +57,17 @@
           </div>
         </li>
       </ol>
-      
-
-
-      <div class="dialog recieved">
-
-
-
-      </div>
-
-      <div class="dialog sent">
-
-
-
-      </div>
-
 
     </mat-card-content>
   </mat-card>
   <mat-card class="input">
     <mat-card-content>
-      input bar
+      <form>
+        <mat-form-field class="msgInput">
+          <textarea matInput placeholder="type some message" maxlength="1000"></textarea>
+        </mat-form-field>
+        <button class="send" mat-raised-button color="primary">Send</button>
+      </form>
     </mat-card-content>
   </mat-card>
 </main>

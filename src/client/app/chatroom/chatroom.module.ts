@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 // md mods
 import { MatToolbarModule } from '@angular/material';
 import { MatCardModule } from '@angular/material';
+import { MatInputModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material';
 
 // routes
 import { chatroomRoutes } from './chatroom.route';
@@ -16,7 +18,9 @@ import { WithComponent } from './with/with.component';
 
 const mdModules = [
   MatToolbarModule,
-  MatCardModule
+  MatCardModule,
+  MatInputModule,
+  MatButtonModule
 ];
 
 @NgModule({

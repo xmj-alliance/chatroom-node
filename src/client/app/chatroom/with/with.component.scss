@@ -74,4 +74,12 @@ mat-card.chat::-webkit-scrollbar {
 
 mat-card.input {
   margin: 1em 0em;
+  mat-form-field.msgInput {
+    width: 80%;
+  }
+  button.send {
+    position: absolute;
+    right: 1em;
+    top: 2.75em;
+  }
 }
