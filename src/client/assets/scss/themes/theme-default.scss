@@ -13,6 +13,7 @@ $default-theme: mat-light-theme($default-primary, $default-accent, $default-warn
 $localPrimary: map-get(map-get($default-theme, primary), 500); 
 $localAccent: map-get(map-get($default-theme, accent), 500); 
 $localWarn: map-get(map-get($default-theme, warn), 500); 
+$foreground: white;
 
 $gray-100: map-get($mat-grey, 100); 
 $gray-200: map-get($mat-grey, 200); 
@@ -72,6 +73,12 @@ body {
 
 mat-hint.warn {
   color: $localWarn;
+}
+
+// custom theme classes
+.tPanel {
+  background-color: $localPrimary;
+  color: $foreground;
 }
 
 @include angular-material-theme($default-theme);
