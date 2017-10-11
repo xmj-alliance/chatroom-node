@@ -62,6 +62,9 @@ typings/
 .vscode
 /dist
 src/client/static/*
+!src/client/static/images
+src/client/static/images/*
+!src/client/static/images/avatar0.png
 !src/client/static/.gitkeep
 src/server/config/*
 !src/server/config/chatroom-node-default.json
