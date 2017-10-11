@@ -12,7 +12,9 @@ import { DataService } from './_services/data.service';
 import { AuthService } from './_services/auth.service';
 import { AuthGuardService } from './_services/auth-guard.service';
 import { AntiAuthGuardService } from './_services/anti-auth-guard.service';
+import { ChatroomService } from './_services/chatroom.service';
 
+// components
 import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
 import { Http404Component } from './http404/http404.component';
@@ -39,7 +41,8 @@ const angularModules = [
     DataService,
     AuthService,
     AuthGuardService,
-    AntiAuthGuardService
+    AntiAuthGuardService,
+    ChatroomService
   ],
   bootstrap: [ AppComponent ]
 })

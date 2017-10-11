@@ -11,7 +11,7 @@ export class DataService {
 
   constructor(private http: Http) { }
 
-  getRawData(url: string): any {
+  getRawData(url: string): Observable<any> {
     let data = this.http.get(url).map(
       this.extractData
     )
@@ -31,7 +31,7 @@ export class DataService {
   }
 
 
-  getCookedData(url: string, extractMethod: (value: Response, index: number) => {}) {
+  getCookedData(url: string, extractMethod: (value: Response, index: number) => {}): Observable<any> {
     let data = this.http.get(url).map(
       extractMethod
     )

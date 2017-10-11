@@ -11,74 +11,14 @@ export class ChatroomComponent implements OnInit {
 	
 	ngOnInit() {}
 
+  baseFileAPI = "/api/file";
+  avatarAPI = `${this.baseFileAPI}/images/avatars/`
+
 	chatList: any[] = [
 		{
-			name: "kde",
-			time: new Date("2017-08-08"),
-			avatar: "kde.jpg",
-			briefText: "some last words",
-			selected: false
-		},
-		{
-			name: "gnome",
-			time: new Date("2017-08-08"),
-			avatar: "gnome.jpg",
-			briefText: "some last words",
-			selected: false
-		},
-		{
-			name: "elementary",
-			time: new Date("2017-08-08"),
-			avatar: "elementary.jpg",
-			briefText: "some last words",
-			selected: false
-		},
-		{
-			name: "macos",
-			time: new Date("2017-08-08"),
-			avatar: "macos.jpg",
-			briefText: "some last words",
-			selected: false
-		},
-		{
-			name: "windows",
-			time: new Date("2017-08-08"),
-			avatar: "windows.jpg",
-			briefText: "some last words",
-			selected: false
-		},
-		{
-			name: "cinemon",
-			time: new Date("2017-08-08"),
-			avatar: "cinemon.jpg",
-			briefText: "some last words",
-			selected: false
-		},
-		{
-			name: "lxqt",
-			time: new Date("2017-08-08"),
-			avatar: "lxqt.jpg",
-			briefText: "some last words",
-			selected: false
-		},
-		{
-			name: "xfce",
-			time: new Date("2017-08-08"),
-			avatar: "xfce.jpg",
-			briefText: "some last words",
-			selected: false
-		},
-		{
-			name: "github",
-			time: new Date("2017-08-08"),
-			avatar: "github.jpg",
-			briefText: "some last words",
-			selected: false
-		},
-		{
-			name: "luci",
-			time: new Date("2017-08-08"),
-			avatar: "luci.jpg",
+			name: "catbon",
+			time: new Date("2017-10-10"),
+			avatar: "main.jpg",
 			briefText: "some last words",
 			selected: false
 		}
@@ -93,5 +33,7 @@ export class ChatroomComponent implements OnInit {
 		}
 		return null;
 	};
+
+
 
 }

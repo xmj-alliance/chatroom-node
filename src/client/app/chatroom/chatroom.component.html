@@ -19,7 +19,7 @@
           <div *ngFor="let chat of chatList">
               <a [routerLink]="'/chat/with/' + chat.name" routerLinkActive="active" #rla="routerLinkActive" class="list-group-item"  [class.list-group-item-action]="!rla.isActive" [title]="chat.name">
                 <header class="avatar">
-                    {{ chat.avatar }}
+                  <img class="fluid" [src]="avatarAPI + chat.name + '?filename=' + chat.avatar" alt="{{ chat.name }}'s avatar">
                 </header>
                 <main class="info">
                   <p>
