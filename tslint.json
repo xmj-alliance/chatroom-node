@@ -6,7 +6,7 @@
       "angular-whitespace": [true, "check-interpolation"],
       "banana-in-box": true,
       "templates-no-negated-async": true,
-      "directive-selector": [true, "attribute", ["app", "chatroom", "user"], "camelCase"],
+      
       "component-selector": [true, "element", ["app", "chatroom", "user"], "kebab-case"],
       "use-input-property-decorator": true,
       "use-output-property-decorator": true,
