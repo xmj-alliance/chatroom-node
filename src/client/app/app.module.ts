@@ -19,6 +19,8 @@ import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
 import { Http404Component } from './http404/http404.component';
 
+
+
 const angularModules = [
   BrowserModule,
   BrowserAnimationsModule,
@@ -33,6 +35,7 @@ const angularModules = [
     appRoutes
   ],
   declarations: [
+
     AppComponent,
     IndexComponent,
     Http404Component

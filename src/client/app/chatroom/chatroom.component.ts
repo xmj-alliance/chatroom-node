@@ -12,13 +12,14 @@ export class ChatroomComponent implements OnInit {
 	ngOnInit() {}
 
   baseFileAPI = "/api/file";
-  avatarAPI = `${this.baseFileAPI}/images/avatars/`
+	avatarAPI = `${this.baseFileAPI}/images/avatars/`;
+	fallbackAvatar = `static/images/avatar0.png`;
 
 	chatList: any[] = [
 		{
 			name: "catbon",
 			time: new Date("2017-10-10"),
-			avatar: "main.jpg",
+			avatar: "main2.jpg",
 			briefText: "some last words",
 			selected: false
 		}

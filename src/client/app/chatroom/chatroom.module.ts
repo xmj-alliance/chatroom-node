@@ -10,6 +10,9 @@ import { MatButtonModule } from '@angular/material';
 // routes
 import { chatroomRoutes } from './chatroom.route';
 
+// directives
+import { Img0Directive } from '../_directive/img0.directive';
+
 // componets
 import { ChatroomComponent } from './chatroom.component';
 import { IndexComponent } from './index/index.component';
@@ -31,6 +34,9 @@ const mdModules = [
     chatroomRoutes
   ],
   declarations: [
+    Img0Directive,
+
+    
     ChatroomComponent,
     IndexComponent,
     Http404Component,
