@@ -66,3 +66,4 @@ src/client/static/*
 src/server/config/*
 !src/server/config/chatroom-node-default.json
 /dll/*
+src/server/static/*

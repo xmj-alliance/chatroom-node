@@ -1,6 +1,7 @@
 import * as Router from 'koa-router';
 
 import { user } from './user';
+import { file } from './file';
 
 const router = new Router();
 
@@ -10,6 +11,8 @@ router.get('/', async (ctx, next) => {
 });
 
 router
-.use('/user', user.routes(), user.allowedMethods());
+.use('/user', user.routes(), user.allowedMethods())
+.use('/file', file.routes(), file.allowedMethods())
+;
 
 export const api: Router = router;

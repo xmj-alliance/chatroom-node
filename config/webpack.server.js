@@ -64,7 +64,11 @@ module.exports = {
       { 
         from: path.resolve(serverpath, "./config"),
         to: 'config' 
-       },
+      },
+      { 
+        from: path.resolve(serverpath, "./static"),
+        to: 'static' 
+      }
     ])
   ],
 
