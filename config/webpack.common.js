@@ -8,6 +8,13 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const helpers = require('./helpers');
 
 const clientpath = path.join(__dirname, "../src/client");
+const appPath = path.resolve(clientpath, 'app');
+const globalscss = [
+  path.resolve(clientpath, 'styles.scss')
+];
+const themeScssPath = [
+  path.resolve(clientpath, 'assets/scss/themes')
+]
 
 module.exports = {
   entry: {
@@ -66,6 +73,38 @@ module.exports = {
         test: /\.css$/,
         include: helpers.root('src', 'client'),
         use: ['raw-loader']
+      },
+      {
+        /* Scoped scss */
+        test: /\.scss$/,
+        exclude: globalscss.concat(themeScssPath), // exclude global and theme scss
+        use: [
+          {
+            loader: "to-string-loader" // Angular needs to-string instead of style-loader
+          },
+          {
+            loader: "css-loader?sourceMap" // translates CSS into CommonJS
+          },
+          {
+            loader: "sass-loader" // compiles Sass to CSS
+          }
+        ]
+      },
+      {
+        /* Global scss */
+        test: /\.scss$/,
+        exclude: appPath, // exclude scoped styles
+        use: [
+          {
+            loader: "style-loader" // global styles needs to get injected to <style></style>
+          },
+          {
+            loader: "css-loader?sourceMap" // translates CSS into CommonJS
+          },
+          {
+            loader: "sass-loader" // compiles Sass to CSS
+          }
+        ]
       }
     ]
   },

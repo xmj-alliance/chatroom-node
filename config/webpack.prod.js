@@ -12,34 +12,9 @@ const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 
 const outputPath = path.join(helpers.root('dist'), "./client") ;
 const rootPath = path.resolve(path.join(outputPath, ".."));
-const extractSassMod = new ExtractTextPlugin({
-  filename: "[name].[contenthash].css",
-  disable: process.env.NODE_ENV === "development"
-});
 
 module.exports = webpackMerge(commonConfig, {
   devtool: 'source-map',
-
-  module:{
-    rules: [
-      {
-        test: /\.scss$/,
-        use: ['to-string-loader'].concat(extractSassMod.extract(
-          {
-            use: [
-              {
-                loader: "css-loader"
-              },
-              {
-                loader: "sass-loader"
-              }
-            ],
-            fallback: "style-loader"
-          }
-        )) // to-string-loader is a workaround. issue: https://github.com/webpack-contrib/extract-text-webpack-plugin/issues/397
-      }
-    ]
-  },
 
   output: {
     path: outputPath,
@@ -66,8 +41,6 @@ module.exports = webpackMerge(commonConfig, {
       htmlLoader: {
         minimize: false // workaround for ng2
       }
-    }),
-
-    extractSassMod
+    })
   ]
 });
