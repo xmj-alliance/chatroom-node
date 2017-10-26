@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AuthService } from "../_services/auth.service";
+
 @Component({
 	selector: 'chatroom-root',
 	templateUrl: './chatroom.component.html',
 	styleUrls: ['./chatroom.component.scss']
 })
 export class ChatroomComponent implements OnInit {
-	constructor(
-	) { }
-	
-	ngOnInit() {}
+
+	me: any = null;
 
   baseFileAPI = "/api/file";
 	avatarAPI = `${this.baseFileAPI}/images/avatars/`;
@@ -35,6 +35,16 @@ export class ChatroomComponent implements OnInit {
 		return null;
 	};
 
-
+	constructor(
+		private authService: AuthService
+	) {
+	}
+	
+	ngOnInit() {
+    if (this.authService.loggedIn()) {
+      this.me = this.authService.getUserInfo();
+    };
+    console.log(this.me);
+	}
 
 }

@@ -1,14 +1,4 @@
 <div class="chatroom-node">
-  <section id="appPanel">
-    <section *ngIf="user; then loggedIn else notLoggedIn"></section>
-    <ng-template #loggedIn>
-      Welcome {{ user.role }} {{ user.username }}!
-    </ng-template>
-    <ng-template #notLoggedIn>
-      <button routerLink="/user/login">Log in</button>
-    </ng-template>
-  </section>
-
   <main class="router">
     <router-outlet></router-outlet>
   </main>

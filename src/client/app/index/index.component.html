@@ -1,4 +1,12 @@
 <header>
+  <section id="appPanel">
+    <section *ngIf="user; then loggedIn else notLoggedIn"></section>
+    <ng-template #loggedIn>
+      Welcome {{ user.role }} {{ user.username }}!
+    </ng-template>
+    <ng-template #notLoggedIn>
+      <button routerLink="/user/login">Log in</button>
+    </ng-template>
+  </section>
   <button routerLink="/chat">Enter The chatroom</button>
-  
 </header>

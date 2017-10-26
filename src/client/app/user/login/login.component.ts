@@ -65,18 +65,18 @@ export class LoginComponent implements OnInit, OnDestroy {
 		@Inject(FormBuilder) fb: FormBuilder,
 		private authService: AuthService,
 		private router: Router,
-		private renderer: Renderer2
+		//private renderer: Renderer2
 	) {
 		this.constructForm(fb);
 	}
 	
 	ngOnInit() {
-		let appPanel = document.querySelector("#appPanel");
-		this.renderer.addClass(appPanel, "hide");
+		// let appPanel = document.querySelector("#appPanel");
+		// this.renderer.addClass(appPanel, "hide");
 	}
 
 	ngOnDestroy() {
-		let appPanel = document.querySelector("#appPanel");
-		this.renderer.removeClass(appPanel, "hide");
+		// let appPanel = document.querySelector("#appPanel");
+		// this.renderer.removeClass(appPanel, "hide");
 	}
 }
