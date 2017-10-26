@@ -19,7 +19,7 @@ npm run xxx
 |   -   |  开发  |  编译  |
 |:-----:|:------:|:-----:|
 |  前端  |  `serve:c`[Webpack-dev-server]|  `build:c`[Webpack]  |
-|  后台  |  `serve:s`[nodemon]           |  `build:s`[Webpack]  |
+|  后台  |  N/A           |  `build:s`[Webpack]  |
 |  一起  |  N/A  不存在的                |  `build`[Webpack] |
 
 ### 本地部署（要求先运行npm run build）
