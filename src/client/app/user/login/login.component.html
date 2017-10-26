@@ -6,18 +6,18 @@
       <mat-card-content>
 
         <mat-form-field>
-          <input  formControlName="username" mdInput placeholder="Name" [(ngModel)]="user.name" maxlength="30" name="name" [required]="true">
+          <input matInput formControlName="username" mdInput placeholder="Name" [(ngModel)]="user.name" maxlength="30" name="name" [required]="true">
           <mat-hint class="warn" *ngIf="form.controls.username.invalid && (form.controls.username.dirty || form.controls.username.touched)" align="end">Your provided name is invalid</mat-hint>
         </mat-form-field>
 
         <mat-form-field>
-          <input formControlName="password" mdInput type="password" placeholder="Password" [(ngModel)]="user.password" maxlength="30" name="password" [required]="true">
+          <input matInput formControlName="password" mdInput type="password" placeholder="Password" [(ngModel)]="user.password" maxlength="30" name="password" [required]="true">
           <mat-hint class="warn" *ngIf="form.controls.password.hasError('minlength') && (form.controls.password.dirty || form.controls.password.touched)" align="end">Your password is too short</mat-hint>
-      </mat-form-field>
+        </mat-form-field>
 
       </mat-card-content>
       <mat-card-actions>
-          <button mat-raised-button color="primary" (click)="login()">Log in</button>
+        <button mat-raised-button color="primary" (click)="login()">Log in</button>
       </mat-card-actions>
     </mat-card>
   </form>

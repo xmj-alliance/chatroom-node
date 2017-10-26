@@ -7,6 +7,9 @@ import { MatInputModule } from '@angular/material';
 import { MatCardModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
 
+// sub modules
+
+
 // route
 import { userRoutes } from './user.route';
 
@@ -26,6 +29,8 @@ const mdModules = [
   MatButtonModule
 ];
 
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -33,6 +38,7 @@ const mdModules = [
     ReactiveFormsModule,
 
     mdModules,
+
 
     userRoutes
   ],

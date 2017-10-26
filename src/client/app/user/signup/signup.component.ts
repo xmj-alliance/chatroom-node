@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { matchOtherValidator } from "../../_utils/match-other-validator";
@@ -8,7 +8,7 @@ import { matchOtherValidator } from "../../_utils/match-other-validator";
 	templateUrl: './signup.component.html',
 	styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent implements OnInit, OnDestroy {
 
 	repeatPassword: string = null;
 	form: FormGroup;
@@ -16,16 +16,6 @@ export class SignupComponent implements OnInit {
 	newUser: any = {
 		email: null,
 		password: null
-	}
-
-	constructor(
-		@Inject(FormBuilder) fb: FormBuilder
-	) {
-		this.constructForm(fb);
-	}
-	
-	ngOnInit() {
-		
 	}
 
 	constructForm (fb: FormBuilder) {
@@ -45,7 +35,7 @@ export class SignupComponent implements OnInit {
 		});
 	}
 
-	signup: ()=>any = () => {
+	signup = () => {
 		console.log(this.form.controls);
 		if (!this.form.invalid) {
 			
@@ -55,5 +45,24 @@ export class SignupComponent implements OnInit {
 		}
 
 	};
+
+	constructor(
+		@Inject(FormBuilder) fb: FormBuilder,
+		private renderer: Renderer2
+	) {
+		this.constructForm(fb);
+	}
+	
+	ngOnInit() {
+		let appPanel = document.querySelector("#appPanel");
+		this.renderer.addClass(appPanel, "hide");
+	}
+
+	ngOnDestroy() {
+		let appPanel = document.querySelector("#appPanel");
+		this.renderer.removeClass(appPanel, "hide");
+	}
+
+
 
 }

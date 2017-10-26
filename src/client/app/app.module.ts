@@ -4,6 +4,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
+// sub modules
+import { AuthModule } from './_utils/auth.module';
+
 // routes
 import { appRoutes } from "./app.route";
 
@@ -28,10 +31,15 @@ const angularModules = [
   FormsModule
 ];
 
+const subModules = [
+  AuthModule
+];
+
 @NgModule({
   imports: [
     angularModules,
-
+    
+    subModules,
     appRoutes
   ],
   declarations: [

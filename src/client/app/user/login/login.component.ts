@@ -1,32 +1,23 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 // services
 import { AuthService } from '../../_services/auth.service';
+//import { AuthService } from '../auth/_service/auth.service';
 
 @Component({
 	selector: 'user-login',
 	templateUrl: './login.component.html',
 	styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
 	form: FormGroup;
 	user: any = {
 		name: null,
 		password: null
 	}
-
-	constructor(
-		@Inject(FormBuilder) fb: FormBuilder,
-		private authService: AuthService,
-		private router: Router
-	) {
-		this.constructForm(fb);
-	}
-	
-	ngOnInit() {}
 
 	constructForm (fb: FormBuilder) {
 		this.form = fb.group({
@@ -69,4 +60,23 @@ export class LoginComponent implements OnInit {
 			console.log("Your form is invalid. Submission aborted.");
 		}
 	};
+
+	constructor(
+		@Inject(FormBuilder) fb: FormBuilder,
+		private authService: AuthService,
+		private router: Router,
+		private renderer: Renderer2
+	) {
+		this.constructForm(fb);
+	}
+	
+	ngOnInit() {
+		let appPanel = document.querySelector("#appPanel");
+		this.renderer.addClass(appPanel, "hide");
+	}
+
+	ngOnDestroy() {
+		let appPanel = document.querySelector("#appPanel");
+		this.renderer.removeClass(appPanel, "hide");
+	}
 }
