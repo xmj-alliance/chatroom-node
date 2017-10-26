@@ -1,3 +1,5 @@
+import * as io from 'socket.io-client';
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -15,18 +17,27 @@ export class WithComponent implements OnInit {
 	fallbackAvatar = `static/images/avatar0.png`;
 
 	me: any = null;
+	socket = io.connect();
 
 	// data subscribed from backend
-	room = {
-		name: "catbon"
+	room: any = {
+		name: null
 	};
 
+
 	chatters = {
+		// will get moved to server-side later
 		inRoom: ["husky", "catbon"],
 		avatar: {
 			"husky": "main.jpg",
 			"catbon": "main.jpg"
 		}
+	}
+
+	newMessage: any = {
+		msg: "testMsg",
+		user: "husky",
+		date: new Date()
 	}
 
 	chats: any[] = [
@@ -91,6 +102,10 @@ export class WithComponent implements OnInit {
 		//  -- display message
 	}
 
+	sendMsg = () => {
+		this.socket.emit('chat-public', this.newMessage);
+	};
+
 	constructor(
 		private authService: AuthService,
 		private actRoute: ActivatedRoute
@@ -99,6 +114,11 @@ export class WithComponent implements OnInit {
 
 	ngOnInit() {
 		// hack to force angular refresh the component
-		this.actRoute.url.subscribe(()=>{this.chatWithMain();});
+		this.actRoute.url.subscribe(()=>{
+			this.chatWithMain();
+			this.socket.on('chat-public', function (data: any) {
+				console.log(data);
+			});
+		});
 	}
 }

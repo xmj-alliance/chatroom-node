@@ -41,7 +41,8 @@
     "koa-logger": "^3.1.0",
     "koa-router": "^7.2.1",
     "koa-send": "^4.1.1",
-    "koa-static": "^4.0.1"
+    "koa-static": "^4.0.1",
+    "socket.io": "^2.0.4"
   },
   "devDependencies": {
     "@types/jasmine": "^2.6.0",
@@ -53,6 +54,8 @@
     "@types/koa-send": "^3.3.0",
     "@types/koa-static": "^3.0.1",
     "@types/node": "^8.0.28",
+    "@types/socket.io": "^1.4.31",
+    "@types/socket.io-client": "^1.4.31",
     "angular-router-loader": "^0.6.0",
     "angular2-template-loader": "^0.6.2",
     "awesome-typescript-loader": "^3.2.3",

@@ -1,3 +1,5 @@
+import * as io from 'socket.io-client';
+
 import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from "../_services/auth.service";
@@ -10,6 +12,7 @@ import { AuthService } from "../_services/auth.service";
 export class ChatroomComponent implements OnInit {
 
 	me: any = null;
+	socket = io.connect();
 
   baseFileAPI = "/api/file";
 	avatarAPI = `${this.baseFileAPI}/images/avatars/`;
@@ -51,7 +54,10 @@ export class ChatroomComponent implements OnInit {
     if (this.authService.loggedIn()) {
       this.me = this.authService.getUserInfo();
     };
-    console.log(this.me);
+		console.log(this.me);
+		this.socket.emit('joinroom', 'public', ()=>{
+			console.log('joined room public');
+		})
 	}
 
 }
