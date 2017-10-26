@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { AuthService } from "../../_services/auth.service";
 
 @Component({
 	selector: 'chatroom-with',
@@ -11,10 +14,7 @@ export class WithComponent implements OnInit {
 	avatarAPI = `${this.baseFileAPI}/images/avatars/`;
 	fallbackAvatar = `static/images/avatar0.png`;
 
-	constructor(
-	) { }
-	
-	myname = "husky";
+	me: any = null;
 
 	// data subscribed from backend
 	room = {
@@ -56,8 +56,32 @@ export class WithComponent implements OnInit {
 
 	// };
 
-	ngOnInit() {
+	grabRoomName: ()=>Promise<string> = () => {
+		return new Promise((resolve, reject) => {
+			this.actRoute.url.subscribe(
+				(next) => {
+					//console.log(next);
+					let path = next[1].path;
+					resolve(path);
+				},
+				(err) => {
+					reject(err);
+				}
+			);
+		});
+		//this.actRoute.snapshot.url[0].path
+	};
+
+	chatWithMain = async () => {
+		// fetch user me info
+    if (this.authService.loggedIn()) {
+      this.me = this.authService.getUserInfo();
+    };
+    console.log(this.me);
 		// fetch chatroom name
+		this.room.name = await this.grabRoomName();
+
+		console.log("in");
 
 		//  when chat recieved
 		//  -- got chatter name and message
@@ -65,5 +89,16 @@ export class WithComponent implements OnInit {
 		//  -- -- self then add class sent
 		//  -- fetch avatar info and store it in avatar obj
 		//  -- display message
+	}
+
+	constructor(
+		private authService: AuthService,
+		private actRoute: ActivatedRoute
+	) { 
+	}
+
+	ngOnInit() {
+		// hack to force angular refresh the component
+		this.actRoute.url.subscribe(()=>{this.chatWithMain();});
 	}
 }

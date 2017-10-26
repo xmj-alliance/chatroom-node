@@ -17,8 +17,15 @@ export class ChatroomComponent implements OnInit {
 
 	chatList: any[] = [
 		{
-			name: "catbon",
+			name: "public",
 			time: new Date("2017-10-10"),
+			avatar: "main2.jpg",
+			briefText: "some last words",
+			selected: false
+		},
+		{
+			name: "public2",
+			time: new Date("2017-10-11"),
 			avatar: "main2.jpg",
 			briefText: "some last words",
 			selected: false
