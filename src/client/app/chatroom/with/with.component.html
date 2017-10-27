@@ -7,7 +7,7 @@
     <mat-card-content>
 
       <ol class="chatroom">
-        <li *ngFor="let chat of chats" class="dialog" [class.received]="chat.chatter !== me?.username" [class.sent]="chat.chatter === me?.username">
+        <li *ngFor="let chat of chats" class="dialog" [class.received]="chat.chatter !== me?.name" [class.sent]="chat.chatter === me?.name">
           <div class="avatarHolder">
             <img class="fluid" [src]="avatarAPI + chat.chatter + '?filename=' + chatters.avatar[chat.chatter]" [src0]="fallbackAvatar" alt="{{ chat.chatter }}">
           </div>

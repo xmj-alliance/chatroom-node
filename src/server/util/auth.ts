@@ -22,6 +22,7 @@ export const auth = async (ctx: Router.IRouterContext) => {
     ctx.body = {
       token: jwt.sign(
         { 
+          avatar: user.avatarActive,
           role: user.role,
           name: user.name,
           nameDisplay: user.nameDisplay

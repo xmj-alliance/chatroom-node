@@ -23,7 +23,8 @@ export class WithComponent implements OnInit {
 	// { 
 	// 	role: user.role,
 	// 	name: user.name,
-	// 	nameDisplay: user.nameDisplay
+	// 	nameDisplay: user.nameDisplay,
+	//  avatar: user.avatarActive
 	// }
 	socket: any = null;
 	sockets = this.socketIOService.sockets;
@@ -45,17 +46,23 @@ export class WithComponent implements OnInit {
 	newMessage = {
 		message: "",
 		chatter: "husky",
+		chatterDisplay: "Husky",
 		date: new Date()
 	}
 
 	chats: any[] = [
+		// eg. chats
+		// {
+		// 	chatter: "catbon",
+		// chatterDisplay: "Catbon",
+		// 	message: "meow meow meow"
+		// },
 	];
 
 	grabRoomName: ()=>Promise<string> = () => {
 		return new Promise((resolve, reject) => {
 			this.actRoute.url.subscribe(
 				(next) => {
-					//console.log(next);
 					let path = next[1].path;
 					resolve(path);
 				},
@@ -71,7 +78,12 @@ export class WithComponent implements OnInit {
 		// fetch user me info
     if (this.authService.loggedIn()) {
 			this.me = this.authService.getUserInfo();
+			this.newMessage.chatterDisplay = this.me.nameDisplay;
 			this.newMessage.chatter = this.me.name;
+			// insert my avatar
+			this.chatters.avatar[this.me.name] = this.me.avatar;
+			console.log(this.me);
+			console.log(this.chatters);
     };
 
 		// fetch chatroom name
@@ -80,7 +92,6 @@ export class WithComponent implements OnInit {
 		// fetch current socket
 		this.socket = this.getSocket(this.room.name);
 
-		//console.log(this.socket);
 
 		//  when chat recieved
 		//  -- got chatter name and message
@@ -174,7 +185,6 @@ export class WithComponent implements OnInit {
 						// 	nameDisplay: "Catbon",
 						// 	role: "guest"
 						// }
-						console.log(user);
 						if (user) {
 							this.chatters.avatar[data.chatter] = user.avatar;
 						}

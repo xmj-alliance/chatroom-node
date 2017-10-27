@@ -54,18 +54,18 @@ export class AuthService {
   };
 
   getUserInfo = () => {
-    let token = localStorage.getItem('currentUser');
-    if (token) {
-      return this.jwtHelper.decodeToken(token);
+    //let token = localStorage.getItem('currentUser');
+    if (this.token) {
+      return this.jwtHelper.decodeToken(this.token);
     } else {
       return null;
     }
   };
 
   loggedIn = () => {
-    let token = localStorage.getItem('currentUser');
-    if (token) {
-      return !this.jwtHelper.isTokenExpired(token);
+    //let token = localStorage.getItem('currentUser');
+    if (this.token) {
+      return !this.jwtHelper.isTokenExpired(this.token);
     } else {
       return false;
     }
