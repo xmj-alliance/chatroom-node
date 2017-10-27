@@ -35,16 +35,13 @@ router.get('/*', async (ctx, next) => {
 app.use(router.routes())
     .use(router.allowedMethods());
 
-//koa listen
-const server = http.createServer(app.callback);
+// koa listen
+const server = http.createServer(app.callback());
 
 server.listen(3000, () => {
   console.log("** koa started on port 3000. **");
 });
 
-// app.listen(3000, () => {
-//   console.log("** koa started on port 3000. **");
-// });
 
 // io
 const io = socket(app);
