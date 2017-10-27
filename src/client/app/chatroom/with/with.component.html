@@ -27,9 +27,9 @@
     <mat-card-content>
       <form>
         <mat-form-field class="msgInput">
-          <textarea matInput placeholder="type some message" maxlength="1000" name="newMessage"></textarea>
+          <textarea matInput placeholder="type some message" maxlength="1000" name="newMessage" [(ngModel)]="newMessage.msg"></textarea>
         </mat-form-field>
-        <button class="send" mat-raised-button color="primary" (click)="sendMsg()">Send</button>
+        <button mat-raised-button class="send" type="button" color="primary" (click)="sendMsg()">Send</button>
       </form>
     </mat-card-content>
   </mat-card>

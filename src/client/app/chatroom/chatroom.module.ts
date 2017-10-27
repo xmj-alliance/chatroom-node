@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 // md mods
 import { MatToolbarModule } from '@angular/material';
@@ -19,6 +20,11 @@ import { IndexComponent } from './index/index.component';
 import { Http404Component } from './http404/http404.component';
 import { WithComponent } from './with/with.component';
 
+const angularModules = [
+  CommonModule,
+  FormsModule
+];
+
 const mdModules = [
   MatToolbarModule,
   MatCardModule,
@@ -28,15 +34,13 @@ const mdModules = [
 
 @NgModule({
   imports: [
-    CommonModule,
+    angularModules,
     mdModules,
-
     chatroomRoutes
   ],
   declarations: [
     Img0Directive,
 
-    
     ChatroomComponent,
     IndexComponent,
     Http404Component,

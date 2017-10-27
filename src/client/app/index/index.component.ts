@@ -19,7 +19,6 @@ export class IndexComponent implements OnInit {
     if (this.authService.loggedIn()) {
       this.user = this.authService.getUserInfo();
     };
-    console.log(this.user);
 	}
 
 }

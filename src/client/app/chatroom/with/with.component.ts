@@ -34,7 +34,7 @@ export class WithComponent implements OnInit {
 		}
 	}
 
-	newMessage: any = {
+	newMessage = {
 		msg: "testMsg",
 		user: "husky",
 		date: new Date()
@@ -88,7 +88,7 @@ export class WithComponent implements OnInit {
     if (this.authService.loggedIn()) {
       this.me = this.authService.getUserInfo();
     };
-    console.log(this.me);
+
 		// fetch chatroom name
 		this.room.name = await this.grabRoomName();
 
@@ -103,7 +103,11 @@ export class WithComponent implements OnInit {
 	}
 
 	sendMsg = () => {
+		this.newMessage.date = new Date();
+
 		this.socket.emit('chat-public', this.newMessage);
+		this.newMessage.msg = "";
+
 	};
 
 	constructor(

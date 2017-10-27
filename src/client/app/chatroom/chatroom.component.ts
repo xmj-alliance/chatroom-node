@@ -54,10 +54,9 @@ export class ChatroomComponent implements OnInit {
     if (this.authService.loggedIn()) {
       this.me = this.authService.getUserInfo();
     };
-		console.log(this.me);
-		this.socket.emit('joinroom', 'public', ()=>{
-			console.log('joined room public');
-		})
+		console.log(`me: ${this.me.username}`);
+		this.socket.emit('joinroom', 'public');
+		console.log("joined room public");
 	}
 
 }
