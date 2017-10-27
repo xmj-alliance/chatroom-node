@@ -16,6 +16,7 @@ import { AuthService } from './_services/auth.service';
 import { AuthGuardService } from './_services/auth-guard.service';
 import { AntiAuthGuardService } from './_services/anti-auth-guard.service';
 import { ChatroomService } from './_services/chatroom.service';
+import { SocketIOService } from './_services/socket.io.service';
 
 // components
 import { AppComponent } from './app.component';
@@ -53,7 +54,8 @@ const subModules = [
     AuthService,
     AuthGuardService,
     AntiAuthGuardService,
-    ChatroomService
+    ChatroomService,
+    SocketIOService
   ],
   bootstrap: [ AppComponent ]
 })

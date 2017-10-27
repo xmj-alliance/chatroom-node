@@ -1,8 +1,7 @@
-import * as io from 'socket.io-client';
-
 import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from "../_services/auth.service";
+import { SocketIOService } from "../_services/socket.io.service";
 
 @Component({
 	selector: 'chatroom-root',
@@ -12,7 +11,7 @@ import { AuthService } from "../_services/auth.service";
 export class ChatroomComponent implements OnInit {
 
 	me: any = null;
-	socket = io.connect();
+	// socket = io.connect();
 
   baseFileAPI = "/api/file";
 	avatarAPI = `${this.baseFileAPI}/images/avatars/`;
@@ -46,16 +45,18 @@ export class ChatroomComponent implements OnInit {
 	};
 
 	constructor(
-		private authService: AuthService
+		private authService: AuthService,
+		private socketIOService: SocketIOService
 	) {
 	}
 	
 	ngOnInit() {
     if (this.authService.loggedIn()) {
-      this.me = this.authService.getUserInfo();
+			this.me = this.authService.getUserInfo();
+			console.log(`me: ${this.me.username}`);
     };
-		console.log(`me: ${this.me.username}`);
-		this.socket.emit('joinroom', 'public');
+		//this.socket.emit('joinroom', 'public');
+		this.socketIOService.joinroom("public");
 		console.log("joined room public");
 	}
 

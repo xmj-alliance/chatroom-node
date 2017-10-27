@@ -1,9 +1,8 @@
-import * as io from 'socket.io-client';
-
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { AuthService } from "../../_services/auth.service";
+import { SocketIOService } from "../../_services/socket.io.service";
 
 @Component({
 	selector: 'chatroom-with',
@@ -17,7 +16,9 @@ export class WithComponent implements OnInit {
 	fallbackAvatar = `static/images/avatar0.png`;
 
 	me: any = null;
-	socket = io.connect();
+	socket: any = null;
+	sockets = this.socketIOService.sockets;
+	//socket = io.connect();
 
 	// data subscribed from backend
 	room: any = {
@@ -92,7 +93,10 @@ export class WithComponent implements OnInit {
 		// fetch chatroom name
 		this.room.name = await this.grabRoomName();
 
-		console.log("in");
+		// fetch current socket
+		this.socket = this.getSocket(this.room.name);
+
+		console.log(this.socket);
 
 		//  when chat recieved
 		//  -- got chatter name and message
@@ -105,24 +109,36 @@ export class WithComponent implements OnInit {
 	sendMsg = () => {
 		this.newMessage.date = new Date();
 
-		this.socket.emit('chat-public', this.newMessage);
+		this.socket.socket.emit('chat-public', this.newMessage);
 		this.newMessage.msg = "";
 
 	};
 
+	getSocket = (roomname: string) => {
+		for (let socket of this.sockets) {
+			if (socket.room === roomname) {
+				return socket;
+			}
+		}
+		return null;
+	};
+
 	constructor(
 		private authService: AuthService,
-		private actRoute: ActivatedRoute
+		private actRoute: ActivatedRoute,
+		private socketIOService: SocketIOService
 	) { 
 	}
 
 	ngOnInit() {
 		// hack to force angular refresh the component
-		this.actRoute.url.subscribe(()=>{
-			this.chatWithMain();
-			this.socket.on('chat-public', function (data: any) {
-				console.log(data);
-			});
+		this.actRoute.url.subscribe(async ()=>{
+			await this.chatWithMain();
+			if (this.socket) {
+				this.socket.socket.on('chat-public', function (data: any) {
+					console.log(data);
+				});
+			}
 		});
 	}
 }
