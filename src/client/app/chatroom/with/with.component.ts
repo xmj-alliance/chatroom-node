@@ -36,37 +36,13 @@ export class WithComponent implements OnInit {
 	}
 
 	newMessage = {
-		message: "testMsg",
+		message: "",
 		chatter: "husky",
 		date: new Date()
 	}
 
 	chats: any[] = [
-		{
-			chatter: "catbon",
-			message: "meow meow meow"
-		},
-		{
-			chatter: "catbon",
-			message: "饿了么"
-		},
-		{
-			chatter: "husky",
-			message: "饿死了"
-		},
-		{
-			chatter: "catbon",
-			message: "是么那就太高兴了你造么我一直以来就梦想着有一天我能够在吃着酸菜鱼 水煮牛肉 川辣黄瓜 宫保鸡丁 回锅肉 			鱼香肉丝 干煸鳝鱼丝 锅巴肉片 红油抄手 辣子鸡丁 家常豆腐 鱼香茄子 毛肚火锅 干蒸黄鱼 火爆腰花 合川肉片 灯影牛肉 夫妻肺片 麻婆豆腐 麻油鸡 棒棒鸡 担担面 剁椒胖鱼头  椒油扁豆 石斛花生米 姜汁热味鸡 干烧鸡翅 小笼粉蒸牛肉 箩粉鱼头豆腐汤的时候听你说着饿死了 像我这样一口气说这么长的不超过3个boom"
-		},
-		{
-			chatter: "husky",
-			message: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦 哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦 哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦 哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦 哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦 哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦 哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦 哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦"
-		}
 	];
-
-	// fetchChatterinfo = () => {
-
-	// };
 
 	grabRoomName: ()=>Promise<string> = () => {
 		return new Promise((resolve, reject) => {
@@ -81,7 +57,7 @@ export class WithComponent implements OnInit {
 				}
 			);
 		});
-		//this.actRoute.snapshot.url[0].path
+
 	};
 
 	chatWithMain = async () => {
@@ -115,7 +91,6 @@ export class WithComponent implements OnInit {
 
 		if (msgToSend.message.length > 0) {
 			this.chats.push(msgToSend);
-			// this.scrollBottom();
 	
 			try {
 				this.socket.socket.emit('chat-public', msgToSend);
@@ -159,10 +134,8 @@ export class WithComponent implements OnInit {
 		this.actRoute.url.subscribe(async ()=>{
 			await this.chatWithMain();
 			if (this.socket) {
-				this.socket.socket.on('chat-public', function (data: any) {
+				this.socket.socket.on('chat-public', (data: any) => {
 					this.chats.push(data);
-					// this.scrollBottom();
-					// console.log(data);
 				});
 			}
 		});
