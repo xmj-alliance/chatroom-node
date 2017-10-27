@@ -54,13 +54,13 @@ io.on('connection', (socket) => {
   socket.on('joinroom', (room) => {
     console.log(`whateverroom: ${room}`);
     socket.join('public');
-  })
 
-  socket.on('chat-public', (msg) => {
-    console.log("msg in chat-public get");
-    //socket.in('public').broadcast.emit('chat-public', msg);
-    socket.broadcast.to('public').emit('chat-public', msg);
-  });
+    socket.on('chat-public', (msg) => {
+      console.log("msg in chat-public get");
+      socket.broadcast.to('public').emit('chat-public', msg);
+    });
+    
+  })
 
   socket.on('leaveroom', function(room) {  
     console.log(`leaving room: ${room}`);

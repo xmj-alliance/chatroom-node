@@ -36,8 +36,8 @@ export class WithComponent implements OnInit {
 	}
 
 	newMessage = {
-		msg: "testMsg",
-		user: "husky",
+		message: "testMsg",
+		chatter: "husky",
 		date: new Date()
 	}
 
@@ -96,7 +96,7 @@ export class WithComponent implements OnInit {
 		// fetch current socket
 		this.socket = this.getSocket(this.room.name);
 
-		console.log(this.socket);
+		//console.log(this.socket);
 
 		//  when chat recieved
 		//  -- got chatter name and message
@@ -107,10 +107,27 @@ export class WithComponent implements OnInit {
 	}
 
 	sendMsg = () => {
-		this.newMessage.date = new Date();
 
-		this.socket.socket.emit('chat-public', this.newMessage);
-		this.newMessage.msg = "";
+		let msgToSend: any = {};
+		msgToSend.date = new Date();
+		msgToSend.message = this.newMessage.message;
+		msgToSend.chatter = this.newMessage.chatter;
+
+		if (msgToSend.message.length > 0) {
+			this.chats.push(msgToSend);
+			// this.scrollBottom();
+	
+			try {
+				this.socket.socket.emit('chat-public', msgToSend);
+			} catch (error) {
+				console.error("msg failed to send");
+			}
+			finally {
+				this.newMessage.message = "";
+			}
+		} else {
+			console.log("Please at least type sth.")
+		}
 
 	};
 
@@ -122,6 +139,13 @@ export class WithComponent implements OnInit {
 		}
 		return null;
 	};
+
+	// scrollBottom = () => {
+	// 	let chatwindow = document.querySelector("mat-card.chat");
+
+	// 	chatwindow.scrollTop = chatwindow.scrollHeight;
+	// 	console.log(chatwindow.scrollTop);
+	// };
 
 	constructor(
 		private authService: AuthService,
@@ -136,7 +160,9 @@ export class WithComponent implements OnInit {
 			await this.chatWithMain();
 			if (this.socket) {
 				this.socket.socket.on('chat-public', function (data: any) {
-					console.log(data);
+					this.chats.push(data);
+					// this.scrollBottom();
+					// console.log(data);
 				});
 			}
 		});
