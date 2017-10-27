@@ -53,7 +53,7 @@ export class ChatroomComponent implements OnInit {
 	ngOnInit() {
     if (this.authService.loggedIn()) {
 			this.me = this.authService.getUserInfo();
-			console.log(`me: ${this.me.username}`);
+			console.log(`me: ${this.me.name}`);
     };
 		//this.socket.emit('joinroom', 'public');
 		this.socketIOService.joinroom("public");

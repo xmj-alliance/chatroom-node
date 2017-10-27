@@ -18,3 +18,12 @@ try {
 const exampleCharacters: any[] = JSON.parse(cFile);
 
 export const characters = exampleCharacters;
+
+export const getUserInfo = (username: string) => {
+  for (let user of characters) {
+    if (user.name === username) {
+      return user;
+    }
+  }
+  return null;
+};

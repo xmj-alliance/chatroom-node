@@ -2,18 +2,9 @@ import * as Router from 'koa-router';
 import * as jwt from 'jsonwebtoken';
 
 import { chatroomNodeConfig } from './configLoader';
-import { characters } from './characterLoader';
+import { characters, getUserInfo } from './characterLoader';
 
 const secret = chatroomNodeConfig.secret;
-
-const getUserInfo = (username: string) => {
-  for (let user of characters) {
-    if (user.name === username) {
-      return user;
-    }
-  }
-  return null;
-};
 
 export const auth = async (ctx: Router.IRouterContext) => {
   const userIn = ctx.request.body;
@@ -32,7 +23,7 @@ export const auth = async (ctx: Router.IRouterContext) => {
       token: jwt.sign(
         { 
           role: user.role,
-          username: user.name,
+          name: user.name,
           nameDisplay: user.nameDisplay
          }
         , secret, {expiresIn: '1h'}

@@ -32,7 +32,7 @@ export class AuthService {
             // set token property
             this.token = res.token;
             // store username and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('currentUser', JSON.stringify({ username: res.username, token: res.token }));
+            localStorage.setItem('currentUser', JSON.stringify({ username: res.name, token: res.token }));
           }
           // login failed because of incorrect username or password || or server internal error
           resolve(res.status); // right or wrong shares

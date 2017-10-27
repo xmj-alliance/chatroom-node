@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { DataService } from "../../_services/data.service";
 import { AuthService } from "../../_services/auth.service";
 import { SocketIOService } from "../../_services/socket.io.service";
 
@@ -11,14 +12,21 @@ import { SocketIOService } from "../../_services/socket.io.service";
 })
 export class WithComponent implements OnInit {
 
-  baseFileAPI = "/api/file";
+	baseUserAPI = "/api/user";
+	baseFileAPI = "/api/file";
+	userInfoAPI = `${this.baseUserAPI}/info`;
 	avatarAPI = `${this.baseFileAPI}/images/avatars/`;
 	fallbackAvatar = `static/images/avatar0.png`;
 
 	me: any = null;
+	// eg. me:
+	// { 
+	// 	role: user.role,
+	// 	name: user.name,
+	// 	nameDisplay: user.nameDisplay
+	// }
 	socket: any = null;
 	sockets = this.socketIOService.sockets;
-	//socket = io.connect();
 
 	// data subscribed from backend
 	room: any = {
@@ -27,11 +35,10 @@ export class WithComponent implements OnInit {
 
 
 	chatters = {
-		// will get moved to server-side later
-		inRoom: ["husky", "catbon"],
+		inRoom: ["husky", "catbon"], // will get moved to server-side later
 		avatar: {
-			"husky": "main.jpg",
-			"catbon": "main.jpg"
+			// "husky": "main.jpg",
+			// "catbon": "main.jpg"
 		}
 	}
 
@@ -63,7 +70,8 @@ export class WithComponent implements OnInit {
 	chatWithMain = async () => {
 		// fetch user me info
     if (this.authService.loggedIn()) {
-      this.me = this.authService.getUserInfo();
+			this.me = this.authService.getUserInfo();
+			this.newMessage.chatter = this.me.name;
     };
 
 		// fetch chatroom name
@@ -115,6 +123,22 @@ export class WithComponent implements OnInit {
 		return null;
 	};
 
+	// function used to fetch user info object, not conined to me myself.
+	getUserInfo = (username: string): Promise<any> => {
+		// this.dataService.getData(`${this.avatarAPI}/${username}?file=`)
+		 return new Promise((resolve, reject) => {
+			this.dataService.getData(`${this.userInfoAPI}/${username}`).subscribe(
+				(resp) => {
+					resolve(resp);
+				},
+				(err) => {
+					reject(err);
+				}
+			);
+		 }); 
+
+	};
+
 	// scrollBottom = () => {
 	// 	let chatwindow = document.querySelector("mat-card.chat");
 
@@ -125,16 +149,37 @@ export class WithComponent implements OnInit {
 	constructor(
 		private authService: AuthService,
 		private actRoute: ActivatedRoute,
-		private socketIOService: SocketIOService
+		private socketIOService: SocketIOService,
+		private dataService: DataService,
 	) { 
 	}
 
 	ngOnInit() {
 		// hack to force angular refresh the component
 		this.actRoute.url.subscribe(async ()=>{
-			await this.chatWithMain();
+
+			await this.chatWithMain();  // <- main entrance
+
+			// socket.io settings
 			if (this.socket) {
-				this.socket.socket.on('chat-public', (data: any) => {
+				this.socket.socket.on('chat-public', async (data: any) => {
+					
+					// used to fetch avatar
+					if (!this.chatters.avatar[data.chatter]) {
+						// if avatar does not exist, then fetch avatar and store locally
+						let user = await this.getUserInfo(data.chatter);
+						// eg. user :
+						// {
+						// 	avatar: "catbon.jpg"
+						// 	nameDisplay: "Catbon",
+						// 	role: "guest"
+						// }
+						console.log(user);
+						if (user) {
+							this.chatters.avatar[data.chatter] = user.avatar;
+						}
+					}
+
 					this.chats.push(data);
 				});
 			}
