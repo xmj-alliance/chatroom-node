@@ -2,7 +2,7 @@
   <section id="appPanel">
     <section *ngIf="user; then loggedIn else notLoggedIn"></section>
     <ng-template #loggedIn>
-      Welcome {{ user.role }} {{ user.username }}!
+      Welcome back, {{ user.role }} {{ user.nameDisplay }}!
     </ng-template>
     <ng-template #notLoggedIn>
       <button routerLink="/user/login">Log in</button>

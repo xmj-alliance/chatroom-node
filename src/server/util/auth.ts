@@ -2,25 +2,44 @@ import * as Router from 'koa-router';
 import * as jwt from 'jsonwebtoken';
 
 import { chatroomNodeConfig } from './configLoader';
+import { characters } from './characterLoader';
 
 const secret = chatroomNodeConfig.secret;
 
-export const auth = async (ctx: Router.IRouterContext) => {
-  const user = ctx.request.body;
+const getUserInfo = (username: string) => {
+  for (let user of characters) {
+    if (user.name === username) {
+      return user;
+    }
+  }
+  return null;
+};
 
-  if (user && user.password === 'password') {
+export const auth = async (ctx: Router.IRouterContext) => {
+  const userIn = ctx.request.body;
+
+  // eg. userIn
+	// {
+	// 	name: "catbon",
+	// 	password: "catbon"
+	// }
+
+  let user = getUserInfo(userIn.name);
+
+  if (user && user.password === userIn.password) {
     ctx.status = 200;
     ctx.body = {
       token: jwt.sign(
         { 
-          role: 'admin',
-          username: user.name
+          role: user.role,
+          username: user.name,
+          nameDisplay: user.nameDisplay
          }
         , secret, {expiresIn: '1h'}
       ), 
       status: "SUCCESS"
     };
-  } else if(user.password !== 'password') {
+  } else if(user.password !== userIn.password) {
     ctx.status = 200;
     ctx.body = {
       token: null,
