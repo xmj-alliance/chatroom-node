@@ -57,7 +57,8 @@ export class ChatroomComponent implements OnInit {
     };
 		//this.socket.emit('joinroom', 'public');
 		this.socketIOService.joinroom("public");
-		console.log("joined room public");
+		this.socketIOService.joinroom("public2");
+		console.log("joined room public AND public2");
 	}
 
 }

@@ -9,7 +9,7 @@
       <ol class="chatroom">
         <li *ngFor="let chat of chats" class="dialog" [class.received]="chat.chatter !== me?.name" [class.sent]="chat.chatter === me?.name">
           <div class="avatarHolder">
-            <img class="fluid" [src]="avatarAPI + chat.chatter + '?filename=' + chatters.avatar[chat.chatter]" [src0]="fallbackAvatar" alt="{{ chat.chatter }}">
+            <img class="fluid" [src]="chatroomService.avatarAPI + chat.chatter + '?filename=' + chatters.avatar[chat.chatter]" [src0]="fallbackAvatar" alt="{{ chat.chatter }}">
           </div>
           <div class="messageHolder">
             <p class="name">{{ chat.chatter }}</p>

@@ -51,13 +51,11 @@ io.on('connection', (socket) => {
 
   console.log(`socket ${socket.id} connected`);
 
-  socket.on('joinroom', (room) => {
-    console.log(`whateverroom: ${room}`);
-    socket.join('public');
-
-    socket.on('chat-public', (msg) => {
-      console.log("msg in chat-public get");
-      socket.broadcast.to('public').emit('chat-public', msg);
+  socket.on('joinroom', (room: string) => {
+    socket.join(room);
+    socket.on(`chat-${room}`, (msg) => {
+      console.log(`msg in chat-${room} get`);
+      socket.broadcast.to(room).emit(`chat-${room}`, msg);
     });
     
   })

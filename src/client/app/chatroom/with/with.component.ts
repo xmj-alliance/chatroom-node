@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { DataService } from "../../_services/data.service";
 import { AuthService } from "../../_services/auth.service";
+import { ChatroomService } from "../../_services/chatroom.service";
 import { SocketIOService } from "../../_services/socket.io.service";
 
 @Component({
@@ -10,15 +11,18 @@ import { SocketIOService } from "../../_services/socket.io.service";
 	templateUrl: './with.component.html',
 	styleUrls: ['./with.component.scss']
 })
-export class WithComponent implements OnInit {
+export class WithComponent implements OnInit, OnDestroy {
 
 	baseUserAPI = "/api/user";
-	baseFileAPI = "/api/file";
+	//baseFileAPI = "/api/file";
 	userInfoAPI = `${this.baseUserAPI}/info`;
-	avatarAPI = `${this.baseFileAPI}/images/avatars/`;
+	//avatarAPI = `${this.baseFileAPI}/images/avatars/`;
 	fallbackAvatar = `static/images/avatar0.png`;
 
-	me: any = null;
+	me: any = {
+		name: "husky",
+		nameDisplay: "Husky"
+	};
 	// eg. me:
 	// { 
 	// 	role: user.role,
@@ -51,6 +55,7 @@ export class WithComponent implements OnInit {
 	}
 
 	chats: any[] = [
+		// chats that are specific to this room. subscribed and filterd from the service.
 		// eg. chats
 		// {
 		// 	chatter: "catbon",
@@ -92,27 +97,50 @@ export class WithComponent implements OnInit {
 		// fetch current socket
 		this.socket = this.getSocket(this.room.name);
 
+		// subscribed and filter chats to local
+		this.chats = await this.chatroomService.getChats(this.room.name);
 
-		//  when chat recieved
-		//  -- got chatter name and message
-		//  -- assign class
-		//  -- -- self then add class sent
-		//  -- fetch avatar info and store it in avatar obj
-		//  -- display message
+		// socket.io settings
+		if (this.socket) {
+			this.socket.socket.on(`chat-${this.room.name}`, async (data: any) => {
+				
+				// used to fetch avatar
+				if (!this.chatters.avatar[data.chatter]) {
+					// if avatar does not exist, then fetch avatar and store locally
+					let user = await this.getUserInfo(data.chatter);
+					// eg. user :
+					// {
+					// 	avatar: "catbon.jpg"
+					// 	nameDisplay: "Catbon",
+					// 	role: "guest"
+					// }
+					if (user) {
+						this.chatters.avatar[data.chatter] = user.avatar;
+					}
+				}
+				this.chatroomService.chats.push(data);
+				// subscribed and filter chats to local
+				this.chats = await this.chatroomService.getChats(this.room.name);
+			});
+		}
 	}
 
-	sendMsg = () => {
+	sendMsg = async () => {
 
 		let msgToSend: any = {};
 		msgToSend.date = new Date();
 		msgToSend.message = this.newMessage.message;
 		msgToSend.chatter = this.newMessage.chatter;
+		msgToSend.room = this.room.name;
 
 		if (msgToSend.message.length > 0) {
-			this.chats.push(msgToSend);
-	
+			this.chatroomService.chats.push(msgToSend);
+
+			// subscribed and filter chats to local
+			this.chats = await this.chatroomService.getChats(this.room.name);
+
 			try {
-				this.socket.socket.emit('chat-public', msgToSend);
+				this.socket.socket.emit(`chat-${this.room.name}`, msgToSend);
 			} catch (error) {
 				console.error("msg failed to send");
 			}
@@ -161,6 +189,7 @@ export class WithComponent implements OnInit {
 		private authService: AuthService,
 		private actRoute: ActivatedRoute,
 		private socketIOService: SocketIOService,
+		public chatroomService: ChatroomService,
 		private dataService: DataService,
 	) { 
 	}
@@ -171,28 +200,10 @@ export class WithComponent implements OnInit {
 
 			await this.chatWithMain();  // <- main entrance
 
-			// socket.io settings
-			if (this.socket) {
-				this.socket.socket.on('chat-public', async (data: any) => {
-					
-					// used to fetch avatar
-					if (!this.chatters.avatar[data.chatter]) {
-						// if avatar does not exist, then fetch avatar and store locally
-						let user = await this.getUserInfo(data.chatter);
-						// eg. user :
-						// {
-						// 	avatar: "catbon.jpg"
-						// 	nameDisplay: "Catbon",
-						// 	role: "guest"
-						// }
-						if (user) {
-							this.chatters.avatar[data.chatter] = user.avatar;
-						}
-					}
-
-					this.chats.push(data);
-				});
-			}
 		});
+	}
+
+	ngOnDestroy() {
+
 	}
 }
